@@ -20,7 +20,7 @@ Friday (14 November 2025)
 
 **09:10 - 09:25** NBIS support and training (Elin Kronander)
 
-**09:25 - 09:55** Lecture:  Analysis of Whole Genome Bisulfite Sequencing (Louella Vasquez)
+**09:25 - 09:55** Lecture:  Analysis of Whole Genome Bisulfite Sequencing data (Louella Vasquez)
 
 **09:55 - 10:15** :doc:`Uppmax set up <./tutorials/setup/lab-setup>`
 
@@ -34,11 +34,11 @@ Friday (14 November 2025)
 
 **13:30 - 14:00** Lecture:  Processing of ONT data and methylation calling (Louella Vasquez)
 
-**14:00 - 15:00** :doc:`Exercises on ONT <>`
+**14:00 - 15:00** :doc:`Exercises on ONT and workflows <>`
 
-**15:00 - 15:15** fika
+**15:00 - 15:15** Fika
 
-**15:10 - 15:45** :doc:`Exercises on ONT <>`
+**15:10 - 15:45** :doc:`Exercises on ONT and workflows <>`
 
 **15:45 - 16:00** Course wrap up
 
