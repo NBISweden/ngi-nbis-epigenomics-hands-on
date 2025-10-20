@@ -28,6 +28,15 @@ Date
 
 
 
+:raw-html:`<br />`
+
+
+.. image:: content/icons/group.png
+   :height: 40
+   :width: 40
+
+
+
 
 Teaching team
 -------------
@@ -40,10 +49,26 @@ Teaching team
 
 
 
+:raw-html:`<br />`
+
+
+.. image:: content/icons/mail.png
+   :height: 40
+   :width: 40
+
+
 Contact us
 ----------
 
 - edu.epigenomics@nbis.se
+
+
+:raw-html:`<br />`
+
+
+.. image:: content/icons/server.png
+   :height: 40
+   :width: 40
 
 
 
@@ -53,6 +78,13 @@ Computing Resources
 This workshop relies on HPC infrastructure kindly provided by `NAISS <https://www.naiss.se/>`_ via `Uppsala Multidisciplinary Center for Advanced Computational Science Uppmax <https://www.uppmax.uu.se/>`_.
 
 
+
+:raw-html:`<br />`
+
+
+.. image:: content/icons/content.png
+   :height: 40
+   :width: 40
 
 
 Site Contents
@@ -64,3 +96,6 @@ Site Contents
    content/schedule
    content/tutorials
    content/presentations
+
+
+*icons by flaticon.com*
