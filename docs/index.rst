@@ -9,7 +9,7 @@
 
 
 ==========================================================
-Welcome to Hands-on Course in Epigenomics
+Hands-on Course in Epigenomics
 ==========================================================
 
 
