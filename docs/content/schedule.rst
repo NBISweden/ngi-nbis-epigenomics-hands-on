@@ -28,7 +28,7 @@ Friday (14 November 2025)
 
 **10:30 - 12:00** :doc:`Exercises on WGBS <./tutorials/methylationSeq/Seq_Tutorial>`
 
-**12:00 - 13:00** lunch 
+**12:00 - 13:00** Lunch 
 
 **13:00 - 13:30** Introduction to workflow and epigenomics workflows (Agata Smialowska)
 
@@ -38,7 +38,7 @@ Friday (14 November 2025)
 
 **15:00 - 15:15** Fika
 
-**15:10 - 15:45** :doc:`Exercises on ONT and workflows <>`
+**15:15 - 15:45** :doc:`Exercises on ONT and workflows <>`
 
 **15:45 - 16:00** Course wrap up
 
