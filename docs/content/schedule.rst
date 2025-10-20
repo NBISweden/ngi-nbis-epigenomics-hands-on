@@ -15,9 +15,6 @@ Schedule
 OBS! This is kept as reference for syntax and links
 
 :raw-html:`<br />`
-
-*just a check* 2
-
 :raw-html:`<br />`
 
 
