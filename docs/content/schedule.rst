@@ -9,37 +9,39 @@ Schedule
 
 
 :raw-html:`<br />`
-
-
-
-OBS! This is kept as reference for syntax and links
-
-:raw-html:`<br />`
 :raw-html:`<br />`
 
 
-Monday (22 September 2025)
+Friday (14 November 2025)
 --------------------------------
 
-**DNA methylation with Illumina array and Bisulfite-seq**
 
-**09:00 - 09:30** Welcome
+**09:00 - 09:10** Welcome
 
-**09:30 - 10:15** Introduction to DNA methylation + Overview Array Exercises
+**09:10 - 09:25** NBIS support and training (Elin Kronander)
 
-**10:15 - 10:30** :doc:`Uppmax set up <./tutorials/setup/lab-setup>` + break
+**09:25 - 09:55** Lecture:  Analysis of Whole Genome Bisulfite Sequencing (Louella Vasquez)
 
-**12:00 - 13:00** lunch *(offline)*
+**09:55 - 10:15** :doc:`Uppmax set up <./tutorials/setup/lab-setup>`
 
-**13:00 - 14:00** Methylation methods & technologies (Jessica Nordlund)
+**10:15 - 10:30** Fika
 
-**14:00 - 14:15** Break
+**10:30 - 12:00** :doc:`Exercises on WGBS <./tutorials/methylationSeq/Seq_Tutorial>`
 
-**14:15 - 14:30** Methylation Exercises Overview II: Methylation Sequencing
+**12:00 - 13:00** lunch 
 
-**14:30 - 16:00** :doc:`Exercises Methylation Sequencing <./tutorials/methylationSeq/Seq_Tutorial>`
+**13:00 - 13:30** Introduction to workflow and epigenomics workflows (Agata Smialowska)
 
-**16:00 - 17:00** Daily challenge *(offline)*
+**13:30 - 14:00** Lecture:  Processing of ONT data and methylation calling (Louella Vasquez)
+
+**14:00 - 15:00** :doc:`Exercises on ONT <>`
+
+**15:00 - 15:15** fika
+
+**15:10 - 15:45** :doc:`Exercises on ONT <>`
+
+**15:45 - 16:00** Course wrap up
+
 
 
 :raw-html:`<br />`
