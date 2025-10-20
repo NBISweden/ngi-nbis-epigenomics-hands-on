@@ -146,7 +146,19 @@ If x11 forwarding is enabled then a window with a clock should pop up on your de
 Install Tools 
 =========================
 
-To be able to follow exercises we ask you to
+- install `Integrative Genomics Viewer <https://software.broadinstitute.org/software/igv/>`_ on your laptop.
+
+
+:raw-html:`<br />`
+:raw-html:`<br />`
+
+
+
+Software Dependencies
+=====================
+
+If you have no access to Uppmax, where all software is preinstalled, you can configure your own system to follow the exercises:
+
 
 - install `R <https://cran.r-project.org/>`_ and `RStudio <https://rstudio.com/>`_ on your laptop.
 
@@ -157,10 +169,24 @@ We will also be using the latest version of ``R`` and ``RStudio`` locally. Both 
 Note that on same operative systems it will be easier to install and run ``R`` and ``RStudio`` if you are administrator of your own computer and hence are allowed to install software on your machine. If you do not have these privileges please ask your system administrator to install the latest version of ``R`` and ``RStudio``.
 
 
+The R dependencies are listed in below.
 
 
-:raw-html:`<br />`
-:raw-html:`<br />`
+.. list-table:: Requirements for WGBS labs (all of these are R packages).
+   :widths: 25 25
+   :header-rows: 1   
+   
+   * - Software
+     - Version
+   * - R
+     - 4.0.0
+   * - methylKit
+     - 1.14.2
+   * - genomation
+     - 1.20.0
+   * - GenomicRanges
+     - 1.40.0
+
 
 Further optional preparations
 ==============================
@@ -184,59 +210,4 @@ Computer skills
 
 
 
-
-Software Dependencies
-=====================
-
-If you have no access to Uppmax, where all software is preinstalled, you can configure your own system to follow the exercises:
-
-
-- install `R <https://cran.r-project.org/>`_ and `RStudio <https://rstudio.com/>`_ on your laptop.
-
-- install `Integrative Genomics Viewer <https://software.broadinstitute.org/software/igv/>`_ on your laptop.
-
-We will also be using the latest version of ``R`` and ``RStudio`` locally. Both of these work on computers running Linux, Windows and Macintosh operating systems. ``RStudio`` is a set of tools as well as an editor that facilitates the use of ``R`` (R ICE). Over the last years it has become a very popular tool and in many ways become a *de-facto* standard for working with ``R``.
-
-Note that on same operative systems it will be easier to install and run ``R`` and ``RStudio`` if you are administrator of your own computer and hence are allowed to install software on your machine. If you do not have these privileges please ask your system administrator to install the latest version of ``R`` and ``RStudio``.
-
-
-The R dependencies are listed in below.
-
-Methylation
-============
-
-.. list-table:: Requirements for both methylation labs (all of these are R packages).
-   :widths: 25 25
-   :header-rows: 1   
-   
-   * - Software
-     - Version
-   * - R
-     - 4.0.0
-   * - limma
-     - 3.44.3
-   * - minfi
-     - 1.34.0
-   * - RColorBrewer
-     - 1.1-2
-   * - missMethyl
-     - 1.22.0
-   * - minfiData
-     - 0.34.0
-   * - Gviz
-     - 1.32.0
-   * - DMRcate
-     - 2.2.3
-   * - DMRcatedata
-     - 2.10.0
-   * - stringr
-     - 1.4.0
-   * - mCSEA
-     - 1.12.0
-   * - methylKit
-     - 1.14.2
-   * - genomation
-     - 1.20.0
-   * - GenomicRanges
-     - 1.40.0
 
