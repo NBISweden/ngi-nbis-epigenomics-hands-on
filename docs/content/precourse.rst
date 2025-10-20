@@ -54,11 +54,11 @@ This will be the account you use to log in to UPPMAX so it is not the same as yo
 Note that it might take up to 2 working days for your account to be created.  You will then receive 2 emails with information on how to login to UPPMAX.
 To apply, please follow this `instruction <https://docs.uppmax.uu.se/getting_started/user_account/#apply-for-an-account-at-uppmax>`_.
 
-:raw-html:`<br />`
-:raw-html:`<br />`
 
-It is also important to set-up your UPPMAX 2FA, please follow the instruction
-`here <https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/>`_.
+Set-up your UPPMAX 2FA
+------------------------
+
+Please follow the instruction `here <https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/>`_.
 
 
 Connect to UPPMAX cluster Rackham
@@ -122,7 +122,7 @@ Some useful tutorials:
 
 
 
-Check configuration and x11 forwarding
+Check configuration and X11 forwarding
 --------------------
 
 After you complete setting-up and you receive a notification from SUPR that **your account have been added to the course allocation**
@@ -135,7 +135,12 @@ After you complete setting-up and you receive a notification from SUPR that **yo
 
 * type ``xclock``
 
-If x11 forwarding is enabled then a window with a clock should pop up on your desktop machine.
+If X11 forwarding is enabled then a window with a clock should pop up on your desktop machine.
+
+If you encounter errors in displaying xclock, please follow debugging steps below.
+* Have you used -Y when ssh to Rackham, i.e., ``ssh -Y rackham.uppmax.uu.se`` ?
+*
+
 
 
 :raw-html:`<br />`
@@ -160,16 +165,16 @@ Software Dependencies
 If you have no access to Uppmax, where all software is preinstalled, you can configure your own system to follow the exercises:
 
 
-- install `R <https://cran.r-project.org/>`_ and `RStudio <https://rstudio.com/>`_ on your laptop.
+- install `R <https://cran.r-project.org/>`_ and 
+- `RStudio <https://rstudio.com/>`_ on your laptop.
 
-- install `Integrative Genomics Viewer <https://software.broadinstitute.org/software/igv/>`_ on your laptop.
 
-We will also be using the latest version of ``R`` and ``RStudio`` locally. Both of these work on computers running Linux, Windows and Macintosh operating systems. ``RStudio`` is a set of tools as well as an editor that facilitates the use of ``R`` (R ICE). Over the last years it has become a very popular tool and in many ways become a *de-facto* standard for working with ``R``.
+Both of these work on computers running Linux, Windows and Macintosh operating systems. ``RStudio`` is a set of tools as well as an editor that facilitates the use of ``R`` (R ICE). Over the last years it has become a very popular tool and in many ways become a *de-facto* standard for working with ``R``.
 
 Note that on same operative systems it will be easier to install and run ``R`` and ``RStudio`` if you are administrator of your own computer and hence are allowed to install software on your machine. If you do not have these privileges please ask your system administrator to install the latest version of ``R`` and ``RStudio``.
 
 
-The R dependencies are listed in below.
+The R packages that you need to install are listed in below.  Note that the R and R-package versions follow the setup that is pre-installed in Rackham.  You are free to install the latest versions.
 
 
 .. list-table:: Requirements for WGBS labs (all of these are R packages).
@@ -186,6 +191,9 @@ The R dependencies are listed in below.
      - 1.20.0
    * - GenomicRanges
      - 1.40.0
+
+:raw-html:`<br />`
+:raw-html:`<br />`
 
 
 Further optional preparations
