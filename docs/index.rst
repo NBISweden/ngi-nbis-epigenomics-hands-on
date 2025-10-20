@@ -45,7 +45,7 @@ Teaching team
 
 - `Agata Smialowska <https://nbis.se/staff/agata-smialowska>`_ <agata.smialowska@nbis.se>
 
-- Snævar Sigurdsson
+- Snævar Sigurdsson <snaevar.sigurdsson@scilifelab.se>
 
 
 
