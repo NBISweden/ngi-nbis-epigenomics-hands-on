@@ -55,10 +55,13 @@ Note that it might take up to 2 working days for your account to be created.  Yo
 To apply, please follow this `instruction <https://docs.uppmax.uu.se/getting_started/user_account/#apply-for-an-account-at-uppmax>`_.
 
 
-Set-up your UPPMAX 2FA
+Set-up your UPPMAX 2-factor authentication
 ------------------------
 
 Please follow the instruction `here <https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/>`_.
+
+
+:raw-html:`<br />`
 
 
 Connect to UPPMAX cluster Rackham
@@ -70,14 +73,15 @@ a remote desktop environment via a web browser.
 `SSH connection using a terminal <https://docs.uppmax.uu.se/getting_started/login_rackham_console_password/>`_
 ----------------------------------------------------------------------------------------------------------------------------
 
-A straightforward way to connect to  Rackham is through a terminal using ``ssh`` connection.
+A straightforward way to connect to  Rackham is through a terminal using ``ssh -X`` or ``ssh -Y`` connection.
 
 - For Linux users, use Terminal (included by default).
 - For Mac users, use Terminal (included by default).  You need to also install `XQuartz  <https://www.xquartz.org/>`_  to enable X11 forwarding from a terminal, 
-  i.e., to run graphical applications on a remote server while displaying them on your laptop.
+  i.e., to run graphical applications on a remote server while displaying them on your laptop.  After installing XQuartz, restart your laptop.
 
 - For Windows system, we recommend using `MobaXterm <http://mobaxterm.mobatek.net/>`_.  Please install the program and not use the portable version.
-  MobaXterm also has a built-in X11 and an integrated SFTP file browser to transfer data between the remote cluster and your computer.
+  MobaXterm also has a built-in X11 and an integrated SFTP file browser to transfer data between the remote cluster and your computer.  
+  After installing MobaXterm, restart your laptop.
 
 Other SSH clients and X-servers for MacOS and Windows are described `here <https://docs.uppmax.uu.se/software/ssh_client/#ssh-client>`_.
 
