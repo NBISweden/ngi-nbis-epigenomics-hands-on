@@ -29,8 +29,7 @@ There are few things to do ***before*** the course starts. Please read carefully
 Computational Resources
 =======================
 
-During the course we will be using Uppsala University’s high performance computer cluster (`UPPMAX <https://docs.uppmax.uu.se/cluster_guides/uppmax_cluster/>`_)  
-as well as run scripts locally on laptops using ``R`` and ``RStudio``.  
+During the course we will be using Uppsala University’s high performance computer cluster (`UPPMAX <https://docs.uppmax.uu.se/cluster_guides/uppmax_cluster/>`_).  If you prefer, you can also run scripts locally on your laptop using ``R`` and ``RStudio``.  
 
 
 Register at SUPR
@@ -57,6 +56,9 @@ To apply, please follow this `instruction <https://docs.uppmax.uu.se/getting_sta
 
 :raw-html:`<br />`
 :raw-html:`<br />`
+
+It is also important to set-up your UPPMAX 2FA, please follow the instruction
+`here <https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/>`_.
 
 
 Connect to UPPMAX cluster Rackham
@@ -109,7 +111,7 @@ Some useful tutorials:
 - `Troubleshoot your MobaXterm X11 connection to UPPMAX <https://hackmd.io/@pmitev/UPPMAX-MobaXterm-X11>`_
 - `File transfer to/from Rackham <https://docs.uppmax.uu.se/cluster_guides/transfer_rackham/>`_
 - `Change your UPPMAX password <https://docs.uppmax.uu.se/getting_started/change_uppmax_password/>`_
-- `How to get an UPPMAX 2FA <https://docs.uppmax.uu.se/getting_started/get_uppmax_2fa/>`_.
+
 
 
    
@@ -120,7 +122,7 @@ Some useful tutorials:
 
 
 
-Check configuration
+Check configuration and x11 forwarding
 --------------------
 
 After you complete setting-up and you receive a notification from SUPR that **your account have been added to the course allocation**
@@ -131,14 +133,18 @@ After you complete setting-up and you receive a notification from SUPR that **yo
 
 * copy the output of the command and email back (to the course organisers at edu.epigenomics@nbis.se)
 
+* type ``xclock``
+
+If x11 forwarding is enabled then a window with a clock should pop up on your desktop machine.
+
 
 :raw-html:`<br />`
 :raw-html:`<br />`
 
 
 
-Install Tools
-=================
+Install Tools 
+=========================
 
 To be able to follow exercises we ask you to
 
@@ -177,20 +183,60 @@ Computer skills
 .. A nice self learn tutorial to ``R``, introducing many central concepts to ``R``.
 
 
-ChIP-seq
-----------
-
-* Introduction to ChIP-seq data analysis `video <https://www.youtube.com/watch?v=zwuUveGgmS0>`_ by Dr. Carl Hermann, University of Heidelberg.
-
-* ChIP-seq and beyond: new and improved methodologies to detect and characterize protein-DNA interactions: `article <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3591838/>`_.
-
-* Q&A: ChIP-seq technologies and the study of gene regulation `article <https://bmcbiol.biomedcentral.com/articles/10.1186/1741-7007-8-56>`_.
 
 
 Software Dependencies
 =====================
 
-If you have no access to Uppmax, where all software is preinstalled, you can configure your own system to follow the exercises.
+If you have no access to Uppmax, where all software is preinstalled, you can configure your own system to follow the exercises:
 
-The dependencies are listed in :doc:`Dependencies <./dependencies>` .
+
+- install `R <https://cran.r-project.org/>`_ and `RStudio <https://rstudio.com/>`_ on your laptop.
+
+- install `Integrative Genomics Viewer <https://software.broadinstitute.org/software/igv/>`_ on your laptop.
+
+We will also be using the latest version of ``R`` and ``RStudio`` locally. Both of these work on computers running Linux, Windows and Macintosh operating systems. ``RStudio`` is a set of tools as well as an editor that facilitates the use of ``R`` (R ICE). Over the last years it has become a very popular tool and in many ways become a *de-facto* standard for working with ``R``.
+
+Note that on same operative systems it will be easier to install and run ``R`` and ``RStudio`` if you are administrator of your own computer and hence are allowed to install software on your machine. If you do not have these privileges please ask your system administrator to install the latest version of ``R`` and ``RStudio``.
+
+
+The R dependencies are listed in below.
+
+Methylation
+============
+
+.. list-table:: Requirements for both methylation labs (all of these are R packages).
+   :widths: 25 25
+   :header-rows: 1   
+   
+   * - Software
+     - Version
+   * - R
+     - 4.0.0
+   * - limma
+     - 3.44.3
+   * - minfi
+     - 1.34.0
+   * - RColorBrewer
+     - 1.1-2
+   * - missMethyl
+     - 1.22.0
+   * - minfiData
+     - 0.34.0
+   * - Gviz
+     - 1.32.0
+   * - DMRcate
+     - 2.2.3
+   * - DMRcatedata
+     - 2.10.0
+   * - stringr
+     - 1.4.0
+   * - mCSEA
+     - 1.12.0
+   * - methylKit
+     - 1.14.2
+   * - genomation
+     - 1.20.0
+   * - GenomicRanges
+     - 1.40.0
 
