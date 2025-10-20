@@ -19,7 +19,7 @@ Welcome to Hands-on Course in Epigenomics
 
 .. image:: content/icons/calendar-date.png
    :height: 40
-      :width: 40
+   :width: 40
 
 Date
 ----
