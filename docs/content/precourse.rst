@@ -30,8 +30,7 @@ Computational Resources
 =======================
 
 During the course we will be using Uppsala University’s high performance computer cluster (`UPPMAX <https://docs.uppmax.uu.se/cluster_guides/uppmax_cluster/>`_).  
-The exercise on ONT data will be using GPU cores so HPC resources will be needed.
-However, the exercise on WGBS can be executed locally on your laptop using ``R`` and ``RStudio``.  Please see (`Software Dependencies <https://ngi-nbis-epigenomics-hands-on.readthedocs.io/en/latest/content/precourse.html#software-dependencies>`_ ) for a list of tools and packages you need to install in your laptop.
+We will be using Rackham and Pelle.  NOte that the instruction below to connect to Rackham is essentially the same for Pelle.
 
 
 Register at SUPR
@@ -133,7 +132,9 @@ Check configuration and X11 forwarding
 
 After you complete setting-up and you receive a notification from SUPR that **your account have been added to the course allocation**
 
-* log in to ``rackham.uppmax.uu.se``
+* open a Terminal
+
+* login by typing this command ``ssh -X [username]@rackham.uppmax.uu.se``
 
 * type ``id`` in the command line
 
@@ -143,9 +144,6 @@ After you complete setting-up and you receive a notification from SUPR that **yo
 
 If X11 forwarding is enabled then a window with a clock should pop up on your desktop machine.
 
-If you encounter errors in displaying xclock, please follow debugging steps below.
-* Have you used -Y when ssh to Rackham, i.e., ``ssh -Y rackham.uppmax.uu.se`` ?
-*
 
 
 
@@ -168,7 +166,8 @@ Install Tools
 Software Dependencies
 =====================
 
-If you have no access to Uppmax, where all software is preinstalled, you can configure your own system to follow the exercises:
+The exercise on WGBS can be executed locally in your laptop using ``R`` and ``RStudio``.  
+If you prefer to run R scripts in your laptop, you can configure your own system to follow the exercises:
 
 
 - install `R <https://cran.r-project.org/>`_ and 
