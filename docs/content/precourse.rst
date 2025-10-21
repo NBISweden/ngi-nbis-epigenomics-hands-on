@@ -21,7 +21,7 @@ Pre-course Information
 :raw-html:`<br />`
 
 
-There are few things to do ***before*** the course starts. Please read carefully and follow the instructions so we can have a good start to the course. Contact us in case anything is unclear.
+There are a few things to do ***before*** the course starts. Please read carefully and follow the instructions so we can have a good start to the course. Contact us in case anything is unclear.
 
 :raw-html:`<br />`
 :raw-html:`<br />`
@@ -30,7 +30,7 @@ Computational Resources
 =======================
 
 During the course we will be using Uppsala University’s high performance computer cluster (`UPPMAX <https://docs.uppmax.uu.se/cluster_guides/uppmax_cluster/>`_).  
-We will be using Rackham and Pelle.  NOte that the instruction below to connect to Rackham is essentially the same for Pelle.
+We will be using Rackham and Pelle.  Note that the instruction below to connect to Rackham is essentially the same for Pelle.
 
 
 Register at SUPR
