@@ -29,7 +29,9 @@ There are few things to do ***before*** the course starts. Please read carefully
 Computational Resources
 =======================
 
-During the course we will be using Uppsala University’s high performance computer cluster (`UPPMAX <https://docs.uppmax.uu.se/cluster_guides/uppmax_cluster/>`_).  If you prefer, you can also run scripts locally on your laptop using ``R`` and ``RStudio``.  
+During the course we will be using Uppsala University’s high performance computer cluster (`UPPMAX <https://docs.uppmax.uu.se/cluster_guides/uppmax_cluster/>`_).  
+The exercise on ONT data will be using GPU cores so HPC resources will be needed.
+However, the exercise on WGBS can be executed locally on your laptop using ``R`` and ``RStudio``.  Please see (`Software Dependencies <https://ngi-nbis-epigenomics-hands-on.readthedocs.io/en/latest/content/precourse.html#software-dependencies>`_ ) for a list of tools and packages you need to install in your laptop.
 
 
 Register at SUPR
