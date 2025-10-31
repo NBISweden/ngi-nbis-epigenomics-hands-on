@@ -36,7 +36,7 @@ Introduction
 ------------
 
 
-   Oxford Nanopore Technologies (ONT) sequencing platform is capable of detecting DNA modifications such as 5-methylcytosine (5mC), 5-hydroxymethylcytosine (5hmC), and 6-methyladenine (6mA) directly from native DNA without the need for chemical conversion or affinity purification.  This is achieved by training machine learning models to recognize the altered electrical signals produced when modified bases pass through the nanopore during sequencing.  In this tutorial, we will explore how to perform basecalling and modified base detection using ONT's Dorado software, followed by quality control and visualization of the results.
+Oxford Nanopore Technologies (ONT) sequencing platform is capable of detecting DNA modifications such as 5-methylcytosine (5mC), 5-hydroxymethylcytosine (5hmC), and 6-methyladenine (6mA) directly from native DNA without the need for chemical conversion or affinity purification.  This is achieved by training machine learning models to recognize the altered electrical signals produced when modified bases pass through the nanopore during sequencing.  In this tutorial, we will explore how to perform basecalling and modified base detection using ONT's Dorado software, followed by quality control and visualization of the results.
 
 
 Connect to Pelle
@@ -51,16 +51,19 @@ Set up your working directory
 Change directory to the course directory 
 
 .. code-block:: bash
+
    cd /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/
 
 , and create your personal folder with name ``<your_name>``.
 
 .. code-block:: bash
+
    mkdir <your_name>
 
 Create sub folders to tidy files in your personal folder, replace ``<your_name>`` with your name in the commands below.
 
 .. code-block:: bash
+
    mkdir <your_name>/scripts  #folder to store your codes
    mkdir <your_name>/data     #folder to store data
    mkdir <your_name>/output   #folder to store output files generated after running your codes
@@ -70,6 +73,7 @@ Instead of copying data files, you will generate softlinks of ONT data to your p
 Soft links, or symbolic links, are special files that act as shortcuts to another file or directory by storing a path to the original location.
 
 .. code-block:: bash
+
    cd data 
    ln -s /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/data/modbase-validation_2024.10 modbase-validation_2024.10
    cd ../
@@ -149,6 +153,7 @@ By default, dorado basecaller will attempt to detect any adapter or primer seque
 
 .. admonition:: What is the argument when invoking dorado basecaller if you want to skip read trimming?
    :class: dropdown, question
+   
     ``--no-trim``
 
 
