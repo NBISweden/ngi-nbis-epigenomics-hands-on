@@ -21,6 +21,8 @@
 DNA Methylation: Oxford Nanopore Data Analysis Workflow
 ========================================================
 
+:raw-html:`<br />`
+
 **Learning Outcomes**
 
 During this tutorial, you will learn how to XXX.
@@ -32,6 +34,12 @@ During this tutorial, you will learn how to XXX.
     :local:
 
 
+
+
+:raw-html:`<br />`
+:raw-html:`<br />`
+
+
 Introduction
 ------------
 
@@ -39,9 +47,16 @@ Introduction
 Oxford Nanopore Technologies (ONT) sequencing platform is capable of detecting DNA modifications such as 5-methylcytosine (5mC), 5-hydroxymethylcytosine (5hmC), and 6-methyladenine (6mA) directly from native DNA without the need for chemical conversion or affinity purification.  This is achieved by training machine learning models to recognize the altered electrical signals produced when modified bases pass through the nanopore during sequencing.  In this tutorial, we will explore how to perform basecalling and modified base detection using ONT's Dorado software, followed by quality control and visualization of the results.
 
 
+:raw-html:`<br />`
+:raw-html:`<br />`
+
 
 Connect to Pelle
 ----------------
+
+:raw-html:`<br />`
+:raw-html:`<br />`
+:raw-html:`<br />`
 
 
 
@@ -81,6 +96,10 @@ Copy source codes.  You will need to edit your local copy of the codes later.
 
    cp /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/scripts scripts/.
 
+
+
+:raw-html:`<br />`
+:raw-html:`<br />`
 
 
 The data
@@ -128,6 +147,9 @@ The data directory structure is as follows:
 This tutorial uses two open source tools available on GitHub: ``Dorado`` for basecalling, including modified base calling, and ``Modkit`` for summary counts of modified and unmodified bases. Both are command-line tools from Oxford Nanopore Technologies. 
 
 
+:raw-html:`<br />`
+:raw-html:`<br />`
+
 
 
 
@@ -165,10 +187,10 @@ We will write a bash script that will execute ``dorado`` command and submit this
 Dorado supports both CPUs and GPUs, but using GPUs is essential for practical runtime.  In the script, we have requested to use one GPU core.  The job should finish in a few minutes, in contrast to several hours in CPU mode.
 
 
-.. admonition:: What is the maximum limit of run time  that you have set in running this job?
+.. admonition:: Question
+   :class: warning
 
-   :class: dropdown, question
-   24 hours
+   What is the maximum limit of run time  that you have set in running this job?
 
 
 .. Insert batch script here
@@ -176,41 +198,42 @@ Dorado supports both CPUs and GPUs, but using GPUs is essential for practical ru
 The lines that start with ``#`` except in ``#SBATCH`` and ``#!/bin/bash`` are just comments that usually describe what a certain line of code does.
 
 
-Now, you can make edits to the source code by using the unix editor nano.
-Remember to use ``Ctrl+O`` to save, ``Ctrl+X`` to exit.
+| Now, you can make edits to the source code by using the unix editor nano.
+| Remember to use ``Ctrl+O`` to save, ``Ctrl+X`` to exit.
 
 .. code-block:: bash
 
    cd scripts
    nano run.dorado.gpu.Pelle.sh 
 
-Replace louella with ``<your_name>`` in variables ``inpod5``, ``reffasta`` and ``outputdir``.
-``Ctrl+O`` and ``Enter`` to save your changes.
+| Replace louella with ``<your_name>`` in variables ``inpod5``, ``reffasta`` and ``outputdir``.
+| ``Ctrl+O`` and ``Enter`` to save your changes.
 
 
 For aligning reads to a reference after basecalling, dorado uses ``minimap2`` aligner.
 
-.. admonition:: What is the argument when invoking dorado basecaller if you want to proceed to read alignment?
-   :class: dropdown, question
+.. admonition:: 
+   :class: warning
    
+   What is the argument when invoking dorado basecaller if you want to proceed to read alignment?
 
 
 In addition, we specified in dorado basecaller that we want to use ``hac`` and ``5mc_5hmC`` for base calling and modified basecalling models respectively.  There are 3 models available namely ``fast``, ``hac`` (high-accuracy), and ``sup`` (super-accurate). These are in order of increasing basecalling accuracy where ``fast`` is the least accurate and ``sup`` is the most accurate, and generally in increasing computing time with ``sup`` being the most computationally expensive.  The Dorado developers recommend the ``hac`` model for most users as it strikes the best balance between accuracy and computational cost.
 
-When specifying the model in the dorado command as in ``hac``, it will use the latest compatible hac model.
-If you want to use a specific model version then use this naming format
-``{analyte}_{pore type}_{kit chemistry}_{translocation speed}_{model type}@version``, e.g.,
-``dna_r10.4.1_e8.2_400bps_sup@v5.2.0``.  For more info about Dorado models, please see `here  <https://software-docs.nanoporetech.com/dorado/latest/models/list>`_.
+| When specifying the model in the dorado command as in ``hac``, it will use the latest compatible hac model.
+| If you want to use a specific model version then use this naming format
+| ``{analyte}_{pore type}_{kit chemistry}_{translocation speed}_{model type}@version``, e.g.,
+| ``dna_r10.4.1_e8.2_400bps_sup@v5.2.0``.  For more info about Dorado models, please see `here  <https://software-docs.nanoporetech.com/dorado/latest/models/list>`_.
 
 
 
 Dorado also supports modified base calling.  Modified bases are modifications to one of the canonical bases (ACGT).  See table below for a list of supported DNA modified bases.    Modified base models can be either all-context or motif-specific.  For example, given the sequence ACGTCA the 5mC all-context model will predict at all C bases i.e., aCgtCa.  On the other hand, the 5mCG model will return predictions at only CG motif i.e., aCgtca.  Furthermore, you can define a space separated list of modified base codes from these choices: 6mA, 5mC, 5mCG,  5mC_5hmC, 5mCG_5hmCG, 4mC_5mC.  
 
 
-.. admonition:: What does this command do? ``dorado basecaller hac, 6mA, 5mCG_5hmCG file.pod5``
-   :class: dropdown, question
+.. admonition:: Question
+   :class: warning
 
-
+   What does this command do? ``dorado basecaller hac, 6mA, 5mCG_5hmCG file.pod5``
 
 
 
@@ -252,16 +275,16 @@ Submitting a job
 After all the lengthy explanation above, you now have understood what the bash script will do and some important information and options in running dorado basecaller.  Now you are ready to submit this job script. 
 
 
-``Ctrl+X`` to exit nano
-To submit the job, type the command below in the terminal
+| ``Ctrl+X`` to exit nano
+| To submit the job, type the command below in the terminal
 
 .. code-block:: bash
 
    sbatch run.dorado.gpu.Pelle.sh 
 
 
-To check on the status of your job in the queue:  
-note that username is your UPPMAX login name.
+| To check on the status of your job in the queue:  
+| note that username is your UPPMAX login name.
 .. code-block:: bash
 
    squeue -u username
@@ -281,7 +304,6 @@ To cancel a job,
    scancel <job id>
 
 You see the job id number in the output from squeue.
-
 .. code-block:: bash
 
    scancel 5104668
@@ -293,7 +315,6 @@ In the script, you will find a code line with  ``#SBATCH -e DORADO_%j_error.txt`
 This means that after your job has finished running, any generated runtime messages will be saved to a log file with filename ``DORADO_%j_error.txt``, where ``%j`` is the job id.  
 
 To view the content of this file,
-
 .. code-block:: bash
 
    less -S DORADO_%j_error.txt
@@ -304,40 +325,36 @@ Now, let us quickly check the count alignment statistics of the bam files genera
 
 
 The command below returns your current location, you should be in the script folder.
-
 .. code-block:: bash
 
    pwd
 
 Change directory to your output folder.
-
 .. code-block:: bash
 
    cd ../output
 
 List all files in the current directory with file extension .bam
-
 .. code-block:: bash
 
    ls *.bam
 
 # Load the pre-installed samtools in Pelle
-
 .. code-block:: bash
 
    module load SAMtools
 
 # Generate alignment summary statistics
-
 .. code-block:: bash
 
    samtools flagstat hac.5mC_rep1.unaligned.bam
    samtools flagstat hac.5mC_rep1.bam
 
 
-.. admonition:: What is the mapping rate of each bam file?
-   :class: dropdown, question
+.. admonition:: Question
+   :class: warning
 
+   What is the mapping rate of each bam file?
 
 
 
@@ -351,7 +368,7 @@ List all files in the current directory with file extension .bam
 
 .. admonition:: Exercise:
    :class: example
-   
+
    Run ``dorado basecaller`` with ``sup`` model.
    Make sure you change all the relevant output files, 
    e.g., change to 
