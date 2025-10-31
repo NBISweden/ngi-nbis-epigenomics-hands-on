@@ -18,14 +18,14 @@
 
 
 ========================================================
-DNA Methylation: Oxford Nanopore Data Analysis Workflow
+DNA Methylation: Oxford Nanopore Data Processing Workflow
 ========================================================
 
 :raw-html:`<br />`
 
 **Learning Outcomes**
 
-During this tutorial, you will learn how to XXX.
+In this tutorial, you will learn how to XXX.
 :raw-html:`<br />`
 
 
@@ -109,7 +109,7 @@ Copy source codes.  You will need to edit your local copy of the codes later.
 :raw-html:`<br />`
 
 
-The data
+The dataset
 -------------
 
 
@@ -175,13 +175,13 @@ To see all the available options and their default values in ``dorado``, run
    dorado <subcommand> -h
    dorado basecaller -h
 
-By default, dorado basecaller will attempt to detect any adapter or primer sequences at the beginning and end of reads, and remove them from the output sequence.
+By default, ``dorado basecaller`` will attempt to detect any adapter or primer sequences at the beginning and end of reads, and remove them from the output sequence.
 
 
 .. admonition:: Question
    :class: warning
 
-    What is the argument when invoking dorado basecaller if you want to skip read trimming?
+    What is the argument when invoking ``dorado basecaller`` if you want to skip read trimming?
 
 
 
@@ -190,7 +190,10 @@ By default, dorado basecaller will attempt to detect any adapter or primer seque
 
 We will write a bash script that will execute ``dorado`` command and submit this script to the SLURM queue system.  The job submission script will include a number of SLURM directives prefixed with ``#SBATCH``.  Have a look at each of the ``#SBATCH``  directives and their meanings.
 
+.. insert script here
+
 Dorado supports both CPUs and GPUs, but using GPUs is essential for practical runtime.  In the script, we have requested to use one GPU core.  The job should finish in a few minutes, in contrast to several hours in CPU mode.
+
 
 
 .. admonition:: Question
@@ -201,7 +204,8 @@ Dorado supports both CPUs and GPUs, but using GPUs is essential for practical ru
 
 .. Insert batch script here
 
-The lines that start with ``#`` except in ``#SBATCH`` and ``#!/bin/bash`` are just comments that usually describe what a certain line of code does.
+The texts that start with ``#`` except in ``#SBATCH`` and ``#!/bin/bash`` are just comments that usually describe what a certain line of code does.
+Hence, these comments will be ingored when the script is executed.
 
 
 | Now, you can make edits to the source code by using the unix editor ``nano``.
@@ -216,17 +220,17 @@ The lines that start with ``#`` except in ``#SBATCH`` and ``#!/bin/bash`` are ju
 | ``Ctrl+O`` and ``Enter`` to save your changes.
 
 
-For aligning reads to a reference after basecalling, dorado uses ``minimap2`` aligner.
+Note that for aligning reads to a reference sequence after basecalling, dorado uses ``minimap2`` aligner.
 
 .. admonition:: Question
    :class: warning
    
-   What is the argument when invoking dorado basecaller if you want to proceed to read alignment?
+   What is the argument when invoking ``dorado basecaller`` if you want to proceed to read alignment?
 
 
-In addition, we specified in dorado basecaller that we want to use ``hac`` and ``5mc_5hmC`` for base calling and modified basecalling models respectively.  There are 3 models available namely ``fast``, ``hac`` (high-accuracy), and ``sup`` (super-accurate). These are in order of increasing basecalling accuracy where ``fast`` is the least accurate and ``sup`` is the most accurate, and generally in increasing computing time with ``sup`` being the most computationally expensive.  The Dorado developers recommend the ``hac`` model for most users as it strikes the best balance between accuracy and computational cost.
+In addition, we specified in ``dorado basecaller`` that we want to use ``hac`` and ``5mc_5hmC`` for base calling and modified basecalling models respectively.  There are 3 models available namely ``fast``, ``hac`` (high-accuracy), and ``sup`` (super-accurate). These are in order of increasing basecalling accuracy where ``fast`` is the least accurate and ``sup`` is the most accurate, and generally in increasing computing time with ``sup`` being the most computationally expensive.  The Dorado developers recommend the ``hac`` model for most users as it strikes the best balance between accuracy and computational cost.
 
-| When specifying the model in the dorado command as in ``hac``, it will use the latest compatible hac model.
+| When specifying the model in the dorado command such as ``hac``, it will use the latest compatible ``hac`` model.
 | If you want to use a specific model version then use this naming format
 | ``{analyte}_{pore type}_{kit chemistry}_{translocation speed}_{model type}@version``, e.g.,
 | ``dna_r10.4.1_e8.2_400bps_sup@v5.2.0``.  For more info about Dorado models, please see `here  <https://software-docs.nanoporetech.com/dorado/latest/models/list>`_.
@@ -234,20 +238,6 @@ In addition, we specified in dorado basecaller that we want to use ``hac`` and `
 
 
 Dorado also supports modified base calling.  Modified bases are modifications to one of the canonical bases (ACGT).  See table below for a list of supported DNA modified bases.    Modified base models can be either all-context or motif-specific.  For example, given the sequence ACGTCA the 5mC all-context model will predict at all C bases i.e., aCgtCa.  On the other hand, the 5mCG model will return predictions at only CG motif i.e., aCgtca.  Furthermore, you can define a space separated list of modified base codes from these choices: 6mA, 5mC, 5mCG,  5mC_5hmC, 5mCG_5hmCG, 4mC_5mC.  
-
-
-.. admonition:: Question
-   :class: warning
-
-   What does this command do? 
-   
-    .. code-block:: bash
-
-      dorado basecaller hac, 6mA, 5mCG_5hmCG file.pod5
-
-
-
-
 
 
 =====     ========================     =====
@@ -259,7 +249,23 @@ Mod       Name                         SAM Code
 6mA       6-Methyladenine              A+a
 =====     ========================     =====
 
-*Table 1: DNA modifications*
+*Table 1: DNA modifications supported in Dorado*
+
+
+
+.. admonition:: Question
+   :class: warning
+
+   What does this command do? 
+   
+    .. code-block:: bash
+
+      dorado basecaller hac,6mA,5mCG_5hmCG file.pod5
+
+
+
+
+
 
 
 
@@ -270,7 +276,7 @@ The default output of dorado is an unaligned BAM, and if alignment is enabled th
 .. admonition:: Question
    :class: warning
 
-   In running dorado basecaller, how would you specify that you want the output file format to be in FASTQ?
+   In running ``dorado basecaller``, how would you specify that you want the output file format to be in FASTQ?
 
 
 
@@ -511,7 +517,7 @@ You can enable a coloring scheme that is designed to create visualizations of al
 :raw-html:`<br />`
 :raw-html:`<br />`
 
-Modkit pileup
+Summarise counts using `Modkit <>`_
 ---------------------
 
 
