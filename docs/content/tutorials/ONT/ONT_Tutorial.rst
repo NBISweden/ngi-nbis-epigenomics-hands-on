@@ -123,7 +123,6 @@ The data directory structure is as follows:
             │   ├── 5hmC_rep1.bam
             │   ├── 5hmC_rep2.bam
             │   ├── 5mC_rep1.bam
-            │   ├── 5mC_rep1.bam.bai
             │   ├── 5mC_rep2.bam
             │   ├── 6mA_rep1.bam
             │   ├── 6mA_rep2.bam
@@ -203,7 +202,7 @@ Dorado supports both CPUs and GPUs, but using GPUs is essential for practical ru
 The lines that start with ``#`` except in ``#SBATCH`` and ``#!/bin/bash`` are just comments that usually describe what a certain line of code does.
 
 
-| Now, you can make edits to the source code by using the unix editor nano.
+| Now, you can make edits to the source code by using the unix editor ``nano``.
 | Remember to use ``Ctrl+O`` to save, ``Ctrl+X`` to exit.
 
 .. code-block:: bash
@@ -217,7 +216,7 @@ The lines that start with ``#`` except in ``#SBATCH`` and ``#!/bin/bash`` are ju
 
 For aligning reads to a reference after basecalling, dorado uses ``minimap2`` aligner.
 
-.. admonition:: 
+.. admonition:: Question
    :class: warning
    
    What is the argument when invoking dorado basecaller if you want to proceed to read alignment?
@@ -238,7 +237,11 @@ Dorado also supports modified base calling.  Modified bases are modifications to
 .. admonition:: Question
    :class: warning
 
-   What does this command do? ``dorado basecaller hac, 6mA, 5mCG_5hmCG file.pod5``
+   What does this command do? 
+   
+    .. code-block:: bash
+
+      ``dorado basecaller hac, 6mA, 5mCG_5hmCG file.pod5``
 
 
 
@@ -262,14 +265,15 @@ Mod       Name                         SAM Code
 The default output of dorado is an unaligned BAM, and if alignment is enabled then the BAM contains alignment information too.  This BAM can then be used to generate a summary of the whole dataset using ``dorado summary`` command.  This command outputs a tab-separated file with read level sequencing information from the BAM file.
 
 
-.. admonition:: In running dorado basecaller, how would you specify that you want the output file format to be in FASTQ?
-   :class: dropdown, question
+.. admonition:: Question
+   :class: warning
+
+   In running dorado basecaller, how would you specify that you want the output file format to be in FASTQ?
 
 
 
 
-
-
+:raw-html:`<br />`
 :raw-html:`<br />`
 
 
