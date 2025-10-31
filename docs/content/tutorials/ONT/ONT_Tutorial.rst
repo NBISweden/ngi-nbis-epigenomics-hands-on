@@ -191,11 +191,11 @@ By default, ``dorado basecaller`` will attempt to detect any adapter or primer s
 We will write a bash script that will execute ``dorado`` command and submit this script to the SLURM queue system.  The job submission script will include a number of SLURM directives prefixed with ``#SBATCH``.  Have a look at each of the ``#SBATCH``  directives and their meanings.
 
 .. admonition:: Job script
-   :class: dropdown, example
+   :class: dropdown,example
 
    .. code-block:: bash
 
-      #!/bin/bash -l
+      #!/bin/bash -l                          # Tells the shell that the script should be interpreted and executed by 'bash'
       #SBATCH -A uppmax2025-2-309             # Replace with your NAISS project name
       #SBATCH -p gpu                          # Request a GPU partition or node
       #SBATCH --gres=gpu:1                    # Request generic resources  of 1 gpu
@@ -568,7 +568,13 @@ You can enable a coloring scheme that is designed to create visualizations of al
 | Select one chromosome, e.g., ``5mers_rand_ref_adapter_01``.  
 | Right click on the BAM track and select ``Color alignments by > base modification 2-color (all)``.
 | You should see a similar IGV session as below.
-.. Insert PNG file.
+
+
+.. image:: Figures/igv_hac.5mC_rep1.png
+   :target: Figures/igv_hac.5mC_rep1.png
+   :alt: 
+*Fig. 1: IGV snapshot for chromosome ``5mers_rand_ref_adapter_01``*
+
 
 .. admonition:: Question
    :class: warning
