@@ -465,10 +465,10 @@ IGV
 IGV is a genome browser that allows you to visualize read mapping.
 You can enable a coloring scheme that is designed to create visualizations of alignments with modified bases specified with ``MM`` and ``ML`` tags in the BAM file,  denoting modification type and likelihood respectively (see the `Sam Tags <https://samtools.github.io/hts-specs/SAMtags.pdf>`_ specification).  While designed for visualization of 5mC, it can be used to visualize any modification. 
 
-|In this scheme, the  color for modified bases is assigned based on the probability of the modification. Specifically:
-|base modifications with probability < 50% are colored blue,
-|base modifications with probability > 50% are colored red for 5mc, magenta for 5hmC.
-Please refer `here <https://igv.org/doc/desktop/#UserGuide/tracks/alignments/base_modifications/>`_ for the  full description of this IGV functionality.
+| In this scheme, the  color for modified bases is assigned based on the probability of the modification. Specifically:
+| base modifications with probability < 50% are colored blue,
+| base modifications with probability > 50% are colored red for 5mc, magenta for 5hmC.
+| Please refer `here <https://igv.org/doc/desktop/#UserGuide/tracks/alignments/base_modifications/>`_ for the  full description of this IGV functionality.
 
 .. admonition:: Exercise:
    :class: example
@@ -487,12 +487,12 @@ Please refer `here <https://igv.org/doc/desktop/#UserGuide/tracks/alignments/bas
 
 
 
-|Start the IGV application.
-|Load the reference FASTA file.  Select ``Genomes > Load Genome from File``.
-|Load BAM file.  Select ``File > Load from File``.
-|Select one chromosome, e.g., ``5mers_rand_ref_adapter_01``.  
-|Right click on the BAM track and select ``Color alignments by > base modification 2-color (all)``.
-You should see a similar IGV session as below.
+| Start the IGV application.
+| Load the reference FASTA file.  Select ``Genomes > Load Genome from File``.
+| Load BAM file.  Select ``File > Load from File``.
+| Select one chromosome, e.g., ``5mers_rand_ref_adapter_01``.  
+| Right click on the BAM track and select ``Color alignments by > base modification 2-color (all)``.
+| You should see a similar IGV session as below.
 .. Insert PNG file.
 
 .. admonition:: Question
