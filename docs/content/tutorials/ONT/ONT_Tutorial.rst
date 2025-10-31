@@ -39,6 +39,12 @@ Introduction
 Oxford Nanopore Technologies (ONT) sequencing platform is capable of detecting DNA modifications such as 5-methylcytosine (5mC), 5-hydroxymethylcytosine (5hmC), and 6-methyladenine (6mA) directly from native DNA without the need for chemical conversion or affinity purification.  This is achieved by training machine learning models to recognize the altered electrical signals produced when modified bases pass through the nanopore during sequencing.  In this tutorial, we will explore how to perform basecalling and modified base detection using ONT's Dorado software, followed by quality control and visualization of the results.
 
 
+.. question::
+
+   Some admonished content using the `question admonition style`.
+
+
+
 Connect to Pelle
 ----------------
 
@@ -153,7 +159,7 @@ By default, dorado basecaller will attempt to detect any adapter or primer seque
 
 .. admonition:: What is the argument when invoking dorado basecaller if you want to skip read trimming?
    :class: dropdown, question
-   
+
     ``--no-trim``
 
 
