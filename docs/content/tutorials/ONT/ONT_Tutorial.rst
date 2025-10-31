@@ -190,7 +190,76 @@ By default, ``dorado basecaller`` will attempt to detect any adapter or primer s
 
 We will write a bash script that will execute ``dorado`` command and submit this script to the SLURM queue system.  The job submission script will include a number of SLURM directives prefixed with ``#SBATCH``.  Have a look at each of the ``#SBATCH``  directives and their meanings.
 
-.. insert script here
+.. admonition:: Job script
+   :class: dropdown, example
+
+   .. code-block:: bash
+
+      #!/bin/bash -l
+      #SBATCH -A uppmax2025-2-309             # Replace with your NAISS project name
+      #SBATCH -p gpu                          # Request a GPU partition or node
+      #SBATCH --gres=gpu:1                    # Request generic resources  of 1 gpu
+      #SBATCH -t 24:00:00                     # Set a limit of the total run time, format is days-hours:minutes:seconds
+      #SBATCH -J DORADO                       # Specifies name for the job
+      #SBATCH -e DORADO_%j_error.txt          # output file for the bash script standard error
+      #SBATCH -o DORADO_%j_out.txt            # output file for the bash script standard output
+
+
+      # location of a precompiled dorado binary
+      dorado="/proj/uppmax2025-2-309/nobackup/ngi-epigenomics/tools/dorado-1.1.0-linux-x64/bin/dorado"
+      #
+      # location of a precompiled modkit binary
+      modkit="/proj/uppmax2025-2-309/nobackup/ngi-epigenomics/tools/dist_modkit_v0.5.1_8fa79e3/modkit"
+      #
+      # location of a precompiled pycoQC binary
+      pycoQC="/home/louel/.conda/envs/pycoQC/bin/pycoQC"
+      #
+      # load samtools - latest version
+      module load SAMtools
+
+
+
+      # input raw POD5 file. CHANGE to your project folder!
+      inpod5="/proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/louella/data/modbase-validation_2024.10/subset/5mC_rep1.pod5"
+      #
+      # reference genome in fasta format.  CHANGE to your project folder!
+      reffasta="/proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/louella/data/modbase-validation_2024.10/references/all_5mers.fa"
+
+
+      # specify the output directory to store the output files.  CHANGE to your project folder!
+      outputdir=/proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/louella/output
+      #
+      # specify the output filename
+      outputbam=$(echo $inpod5 | xargs basename -s .pod5)
+      outputbam="hac.$outputbam"
+      echo "Saving output file to .... $outputbam"
+      echo
+      sleep 3s
+
+
+      #
+      #
+      # 1.
+      # run dorado basecaller command
+      # output is unaligned BAM file
+      $dorado basecaller hac,5mC_5hmC $inpod5 > $outputdir/$outputbam.unaligned.bam
+
+
+      # run dorado basecaller command and align reads to the reference genome
+      # output is aligned BAM file
+      $dorado basecaller hac,5mC_5hmC $inpod5 --reference $reffasta > $outputdir/$outputbam.bam
+      #
+      # sort bam by coordinates then index
+      samtools sort $outputdir/$outputbam.bam > $outputdir/tmp.$outputbam.bam
+      mv $outputdir/tmp.$outputbam.bam $outputdir/$outputbam.bam
+      samtools index $outputdir/$outputbam.bam
+
+      #
+      #
+      # 2. 
+      # outputs read level sequencing information from the BAM file
+      $dorado summary $outputdir/$outputbam.bam > $outputdir/$outputbam.summary.tsv
+
 
 Dorado supports both CPUs and GPUs, but using GPUs is essential for practical runtime.  In the script, we have requested to use one GPU core.  The job should finish in a few minutes, in contrast to several hours in CPU mode.
 
@@ -517,7 +586,7 @@ You can enable a coloring scheme that is designed to create visualizations of al
 :raw-html:`<br />`
 :raw-html:`<br />`
 
-Summarise counts using `Modkit <>`_
+Summarise counts using `Modkit <https://nanoporetech.github.io/modkit/>`_
 ---------------------
 
 
