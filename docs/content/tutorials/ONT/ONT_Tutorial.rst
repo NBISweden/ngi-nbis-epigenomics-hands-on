@@ -65,16 +65,19 @@ Set up your working directory
 
 
 Change directory to the course directory 
+
 .. code-block:: bash
 
    cd /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/
 
 , and create your personal folder with name ``<your_name>``.
+
 .. code-block:: bash
 
    mkdir <your_name>
 
 Create sub folders to tidy files in your personal folder, replace ``<your_name>`` with your name in the commands below.
+
 .. code-block:: bash
 
    mkdir <your_name>/scripts  #folder to store your codes
@@ -84,6 +87,7 @@ Create sub folders to tidy files in your personal folder, replace ``<your_name>`
 
 Instead of copying data files, you will generate softlinks of ONT data to your personal folder.
 Soft links, or symbolic links, are special files that act as shortcuts to another file or directory by storing a path to the original location.
+
 .. code-block:: bash
 
    cd data 
@@ -92,6 +96,7 @@ Soft links, or symbolic links, are special files that act as shortcuts to anothe
 
 
 Copy source codes.  You will need to edit your local copy of the codes later.
+
 .. code-block:: bash
 
    cp /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/scripts scripts/.
