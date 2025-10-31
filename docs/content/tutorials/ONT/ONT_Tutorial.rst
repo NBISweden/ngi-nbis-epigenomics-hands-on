@@ -39,11 +39,6 @@ Introduction
 Oxford Nanopore Technologies (ONT) sequencing platform is capable of detecting DNA modifications such as 5-methylcytosine (5mC), 5-hydroxymethylcytosine (5hmC), and 6-methyladenine (6mA) directly from native DNA without the need for chemical conversion or affinity purification.  This is achieved by training machine learning models to recognize the altered electrical signals produced when modified bases pass through the nanopore during sequencing.  In this tutorial, we will explore how to perform basecalling and modified base detection using ONT's Dorado software, followed by quality control and visualization of the results.
 
 
-.. question::
-
-   Some admonished content using the `question admonition style`.
-
-
 
 Connect to Pelle
 ----------------
@@ -55,19 +50,16 @@ Set up your working directory
 
 
 Change directory to the course directory 
-
 .. code-block:: bash
 
    cd /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/
 
 , and create your personal folder with name ``<your_name>``.
-
 .. code-block:: bash
 
    mkdir <your_name>
 
 Create sub folders to tidy files in your personal folder, replace ``<your_name>`` with your name in the commands below.
-
 .. code-block:: bash
 
    mkdir <your_name>/scripts  #folder to store your codes
@@ -77,7 +69,6 @@ Create sub folders to tidy files in your personal folder, replace ``<your_name>`
 
 Instead of copying data files, you will generate softlinks of ONT data to your personal folder.
 Soft links, or symbolic links, are special files that act as shortcuts to another file or directory by storing a path to the original location.
-
 .. code-block:: bash
 
    cd data 
@@ -86,8 +77,8 @@ Soft links, or symbolic links, are special files that act as shortcuts to anothe
 
 
 Copy source codes.  You will need to edit your local copy of the codes later.
-
 .. code-block:: bash
+
    cp /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/scripts scripts/.
 
 
@@ -145,11 +136,13 @@ Basecalling using `Dorado <https://github.com/nanoporetech/dorado>`_
 
 
  .. code-block:: bash
+
    module load dorado.XXX
 
 To see all the available options and their default values in ``dorado``, run
  
  .. code-block:: bash
+
    dorado -h 
    dorado <subcommand> -h
    dorado basecaller -h
@@ -157,10 +150,10 @@ To see all the available options and their default values in ``dorado``, run
 By default, dorado basecaller will attempt to detect any adapter or primer sequences at the beginning and end of reads, and remove them from the output sequence.
 
 
-.. admonition:: What is the argument when invoking dorado basecaller if you want to skip read trimming?
-   :class: dropdown, question
+.. admonition:: Question
+   :class: warning
 
-    ``--no-trim``
+    What is the argument when invoking dorado basecaller if you want to skip read trimming?
 
 
 
@@ -173,6 +166,7 @@ Dorado supports both CPUs and GPUs, but using GPUs is essential for practical ru
 
 
 .. admonition:: What is the maximum limit of run time  that you have set in running this job?
+
    :class: dropdown, question
    24 hours
 
@@ -186,6 +180,7 @@ Now, you can make edits to the source code by using the unix editor nano.
 Remember to use ``Ctrl+O`` to save, ``Ctrl+X`` to exit.
 
 .. code-block:: bash
+
    cd scripts
    nano run.dorado.gpu.Pelle.sh 
 
@@ -247,6 +242,9 @@ The default output of dorado is an unaligned BAM, and if alignment is enabled th
 
 
 
+:raw-html:`<br />`
+
+
 Submitting a job
 ----------------------------------
 
@@ -258,17 +256,19 @@ After all the lengthy explanation above, you now have understood what the bash s
 To submit the job, type the command below in the terminal
 
 .. code-block:: bash
+
    sbatch run.dorado.gpu.Pelle.sh 
 
 
 To check on the status of your job in the queue:  
 note that username is your UPPMAX login name.
-
 .. code-block:: bash
+
    squeue -u username
 
 
 .. code-block:: bash
+
    JOBID PARTITION     NAME         USER     ST       TIME  NODES NODELIST(REASON)
    5104668             gpu DORADO   username PD       0:00      1 (Priority)
 
@@ -277,11 +277,13 @@ Here we can see in the status column (ST) that the job is pending (PD) and has n
 To cancel a job,
 
 .. code-block:: bash
+
    scancel <job id>
 
 You see the job id number in the output from squeue.
 
 .. code-block:: bash
+
    scancel 5104668
 
 
@@ -293,6 +295,7 @@ This means that after your job has finished running, any generated runtime messa
 To view the content of this file,
 
 .. code-block:: bash
+
    less -S DORADO_%j_error.txt
 
 
@@ -303,26 +306,31 @@ Now, let us quickly check the count alignment statistics of the bam files genera
 The command below returns your current location, you should be in the script folder.
 
 .. code-block:: bash
+
    pwd
 
 Change directory to your output folder.
 
 .. code-block:: bash
+
    cd ../output
 
 List all files in the current directory with file extension .bam
 
 .. code-block:: bash
+
    ls *.bam
 
 # Load the pre-installed samtools in Pelle
 
 .. code-block:: bash
+
    module load SAMtools
 
 # Generate alignment summary statistics
 
 .. code-block:: bash
+
    samtools flagstat hac.5mC_rep1.unaligned.bam
    samtools flagstat hac.5mC_rep1.bam
 
@@ -343,6 +351,7 @@ List all files in the current directory with file extension .bam
 
 .. admonition:: Exercise:
    :class: example
+   
    Run ``dorado basecaller`` with ``sup`` model.
    Make sure you change all the relevant output files, 
    e.g., change to 
@@ -367,11 +376,13 @@ We can use the software `pycoQC <https://a-slide.github.io/pycoQC/>`_ to generat
 
 The minimal usage is 
 .. code-block:: bash
+
    pycoQC -f /path/to/summary.tsv -o /path/to/output.html
 
 
 .. admonition:: Exercise:
    :class: example
+
    Add a pycoQC run in step 3 of the bash script ``run.dorado.gpu.Pelle.sh`` and submit the job again.
    Use the command below which will include alignment information from an input BAM file.
    ``pycoQC -f /path/to/summary.tsv -a /path/to/input.bam -o /path/to/output.html``
@@ -384,6 +395,7 @@ Download the html report to your laptop.
 Open a terminal and change to the desired directory, ``i.e., cd /path/to/myfolder``,
 then use the scp command to transfer files.
 .. code-block:: bash
+
    scp <your_uppmax_username>@pelle.uppmax.uu.se:/proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/<your_name>/output/hac.5mC_rep1.html .
 
 
@@ -415,10 +427,14 @@ Please refer `here <https://igv.org/doc/desktop/#UserGuide/tracks/alignments/bas
    :class: example
 
    Download a BAM file and its index  to your laptop.
-   ``scp <your_uppmax_username>@pelle.uppmax.uu.se:/proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/<your_name>/output/*.bam.* .``
+   .. code-block:: bash
+
+      ``scp <your_uppmax_username>@pelle.uppmax.uu.se:/proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/<your_name>/output/*.bam.* .``
 
    Download the reference sequence FASTA file and its index  to your laptop.
-   ``scp <your_uppmax_username>@pelle.uppmax.uu.se:/proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/<your_name>/data/modbase-validation_2024.10/references/*.fa.* .``
+   .. code-block:: bash
+
+      ``scp <your_uppmax_username>@pelle.uppmax.uu.se:/proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/<your_name>/data/modbase-validation_2024.10/references/*.fa.* .``
 
 
 
