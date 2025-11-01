@@ -671,6 +671,14 @@ You can also use ``--combine-strands`` to sum the counts from both strands, and 
 .. admonition:: Exercise:
    :class: example
 
+
+   | Add a ``modkit pileup`` run in step 4 of the bash script ``run.dorado.gpu.Pelle.sh`` 
+   | and submit the job again.
+   | Use the command below with option ``--preset traditional`` which is equivalent to
+   | ``--cpg --ref <reference.fasta> --ignore h --combine-strands``.
+   | Please edit the file path and name in the script accordingly.
+
+
    NB: The backlash ``\`` is used to split a long command into multiple lines for better readability.
 
    .. code-block:: bash
@@ -686,7 +694,6 @@ You can also use ``--combine-strands`` to sum the counts from both strands, and 
 
 
 
-Note that  ``--preset traditional`` is equivalent to invoking  ``--cpg --ref <reference.fasta> --ignore h --combine-strands``.
 
 
 
@@ -708,7 +715,7 @@ Modkit extras
 --------------
 
 Modkit has a suite of tools for processing and analyzing modified base calls in modBAM files.  Here are two more functionality that you may find useful.
-Please visit the Modkit documentation for example usage and more details.
+We do not have the time to discuss them in this workshop.  However, if you are interested, please visit the Modkit documentation for example usage and more details.
 
 
 `Modkit repair <https://nanoporetech.github.io/modkit/intro_repair.html>`_
