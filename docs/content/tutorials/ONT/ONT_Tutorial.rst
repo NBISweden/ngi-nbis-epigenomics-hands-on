@@ -562,12 +562,12 @@ You can enable a coloring scheme that is designed to create visualizations of al
 
 
 
-| Start the IGV application.
-| Load the reference FASTA file.  Select ``Genomes > Load Genome from File``.
-| Load BAM file.  Select ``File > Load from File``.
-| Select one chromosome, e.g., ``5mers_rand_ref_adapter_01``.  
-| Right click on the BAM track and select ``Color alignments by > base modification 2-color (all)``.
-| You should see a similar IGV session as below.
+   | Start the IGV application.
+   | Load the reference FASTA file.  Select ``Genomes > Load Genome from File``.
+   | Load BAM file.  Select ``File > Load from File``.
+   | Select one chromosome, e.g., ``5mers_rand_ref_adapter_01``.  
+   | Right click on the BAM track and select ``Color alignments by > base modification 2-color (all)``.
+   | You should see a similar IGV session as below.
 
 
 .. image:: Figures/igv_hac.5mC_rep1.png
