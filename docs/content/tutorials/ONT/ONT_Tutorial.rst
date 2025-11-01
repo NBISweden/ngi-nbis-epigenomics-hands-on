@@ -616,6 +616,7 @@ The output ``<OUT_BED>`` of a ``modkit pileup`` is a bedMethyl table as describe
 By default, ``modkit`` will output a BED row for all genomic positions where there is at least one base modification in the input modBAM. 
 
 Modkit uses single-letter codes for common modified bases.  This code will be written out in column 4 of the bedMethyl table.
+
 | Examples of modified base codes:
 | m: 5-methylcytosine (5mC)
 | h: 5-hydroxymethylcytosine (5hmC)
@@ -637,7 +638,7 @@ From the output of ``pileup.bed``,  I am only selecting the rows corresponding t
 
 
 .. insert table here
-
+Nother_mod	
 
 .. admonition:: Question
    :class: warning
@@ -688,6 +689,9 @@ Note that  ``--preset traditional`` is equivalent to invoking  ``--cpg --ref <re
 
 
 
+
+:raw-html:`<br />`
+:raw-html:`<br />`
 
 
 
