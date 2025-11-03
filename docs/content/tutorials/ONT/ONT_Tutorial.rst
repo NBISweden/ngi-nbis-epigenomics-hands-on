@@ -757,7 +757,7 @@ For a full description of this workflow, please visit `here <https://epi2me.nano
 
 
 | This workflow can be used to perform:
-| (Modified) Basecalling of a directory of pod5 or fast5 signal data
+| (Modified) Basecalling of a directory of pod5 or fast5 signal data using ``dorado basecaller``
 | Output format can be FASTQ, CRAM or Unaligned BAM
 | If a reference is provided, dorado will perform alignment using minimap2
 
@@ -790,7 +790,7 @@ Edit your local copy of the script ``run.epi2me.basecall.sh``.
 
 
 .. admonition:: Job script
-   :class: dropdown,example
+   :class: dropdown, note
 
    .. code-block:: bash
 
@@ -881,7 +881,27 @@ To submit the job, type the command below in the terminal.
 
 
 
-The output file is an aligned modBAM, and can be found in your output directory ``$OUTPUT`` as defined in the job script.
+
+The example run of EPI2ME wf-basecalling in the job script will generate CRAM files that can be found in your output directory $OUTPUT.
+
+.. admonition:: Output files generated
+   :class: dropdown, note
+
+   .. code-block:: bash
+
+
+      ├── execution
+      │   ├── report.html
+      │   ├── timeline.html
+      │   └── trace.txt
+      ├── SAMPLE.fail.cram
+      ├── SAMPLE.fail.cram.crai
+      ├── SAMPLE.pass.cram
+      ├── SAMPLE.pass.cram.crai
+      └── wf-basecalling-report.html
+
+
+
 
 
 :raw-html:`<br />`
