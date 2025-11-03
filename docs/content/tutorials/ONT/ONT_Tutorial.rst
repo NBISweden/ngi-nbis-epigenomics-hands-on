@@ -1,4 +1,4 @@
-.. |Green-boxts| raw:: html
+. |Green-boxts| raw:: html
 
     <div style="background-color: lightgreen; width: 100%; padding: 5px;">
     <h1>
@@ -740,6 +740,146 @@ Population-scale DMR analysis takes population groups (e.g., case/control cohort
 
 Alternative workflows
 ---------------------
+
+
+We present here alternative workflows built using Nextflow that are pre-packaged and reproducible pipelines to analyze Oxford Nanopore sequencing data.  These workflows automate complex tasks like alignment, count pileup, and finding DMRs.
+
+For a tutorial about the basics of Nextflows and launching of nf-core pipelines in HPC, please see `here <https://ngi-nbis-epigenomics-hands-on.readthedocs.io/en/latest/content/tutorials/nextflow/nextflow.html>´_.
+
+
+**EPI2ME wf-basecalling**
+
+
+EPI2ME Labs maintains a collection of Nextflow bioinformatics workflows tailored to ONT data. 
+Here we only present the workflow for basecalling.
+For a full description of this workflow, please visit `here <https://epi2me.nanoporetech.com/epi2me-docs/workflows/wf-basecalling/>`_.
+
+
+| This workflow can be used to perform:
+| (Modified) Basecalling of a directory of pod5 or fast5 signal data
+| Output format can be FASTQ, CRAM or Unaligned BAM
+| If a reference is provided, dorado will perform alignment using minimap2
+
+
+
+
+Change directory to your personal folder.
+
+.. code-block:: bash
+
+   cd /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/<your_name>
+
+
+A demo dataset is provided by EPI2ME for testing the workflow.  The POD5 dataset is a subset of the January 2025 GIAB HG002 Dataset used for testing the EPI2ME wf-basecalling pipeline.
+| Generate softlinks of the demo data to your personal folder.
+
+.. code-block:: bash
+
+   cd data 
+   ln -s /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/data/wf-basecalling-demo wf-basecalling-demo 
+   cd ../
+
+Edit your local copy of the script ``run.epi2me.basecall.sh``.
+
+.. code-block:: bash
+
+   cd script
+   nano run.epi2me.basecall.sh
+
+
+.. admonition:: Job script
+   :class: dropdown,example
+
+   .. code-block:: bash
+
+      #!/bin/bash -l
+
+      #SBATCH -A uppmax2025-2-309             # Replace with your NAISS project name
+      #SBATCH -p gpu                          # Request a GPU partition or node
+      #SBATCH --gres=gpu:1                    # Request generic resources  of 1 gpu
+      #SBATCH --ntasks 16                     # Request this number of threads
+      #SBATCH -t 12:00:00                     # Set a limit of the total run time
+      #SBATCH -J EPI2ME                       # Specifies name for the job
+      #SBATCH -e EPI2ME_%j_error.txt          # output file for the bash script standard error
+      #SBATCH -o EPI2ME_%j_out.txt            # output file for the bash script standard output
+
+
+      # Load the preinstalled latest Nextflow
+      module load Nextflow
+
+      # set your personal directory
+      mydir="/proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/louella"
+
+
+      # Set Apptainer/Singularity environment variables to define caching and tmp
+      # directories. These are used during the conversion of Docker images to
+      # Apptainer/Singularity ones.
+      # These lines can be omitted if the variables are already set in your `~/.bashrc` file.
+      #
+      # create directory
+      mkdir -p $mydir/apptainer/cache
+      mkdir -p $mydir/apptainer/tmp
+      #
+      export APPTAINER_CACHEDIR="$mydir/apptainer/cache"
+      export APPTAINER_TMPDIR="$mydir/apptainer/tmp"
+
+
+      # output folder
+      OUTPUT="$mydir/output/TEST_EPI2ME"
+      # create directory
+      mkdir -p $OUTPUT
+
+
+      # directory containing all pod5 files
+      inpod5="$mydir/data/wf-basecalling-demo/input_1"
+      # reference sequence FASTA file
+      reffasta="$mydir/data/wf-basecalling-demo/GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta"
+
+
+
+
+
+      # launch nextflow process
+      nextflow run epi2me-labs/wf-basecalling \
+         --basecaller_cfg 'dna_r10.4.1_e8.2_400bps_hac@v5.2.0' \             # name of the model for basecalling
+         --remora_cfg 'dna_r10.4.1_e8.2_400bps_hac@v5.2.0_5mCG_5hmCG@v1' \   # name of the model for modified basecalling
+         --dorado_ext 'pod5' \                                               # file extension for Dorado inputs
+         --input $inpod5 \
+         --ref $reffasta \
+         -profile singularity \
+         --out_dir $OUTPUT
+
+
+
+
+
+
+
+
+| Replace ``louella`` with ``<your_name>`` in variable ``mydir``.
+| ``Ctrl+O`` and ``Enter`` to save your changes.
+| ``Ctrl+X`` to exit nano.
+
+
+
+To submit the job, type the command below in the terminal.
+
+.. code-block:: bash
+
+   sbatch  run.epi2me.basecall.sh
+
+
+| To check on the status of your job in the queue:  
+| note that ``username`` is your UPPMAX login name.
+
+.. code-block:: bash
+
+   squeue -u username
+
+
+
+
+The output file is an aligned modBAM, and can be found in your output directory ``$OUTPUT`` as defined in the job script.
 
 
 
