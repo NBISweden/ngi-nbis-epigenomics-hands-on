@@ -101,7 +101,7 @@ Copy source codes.  You will need to edit your local copy of the codes later.
 
 .. code-block:: bash
 
-   cp /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/scripts scripts/.
+   cp /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/scripts/* scripts/.
 
 
 
