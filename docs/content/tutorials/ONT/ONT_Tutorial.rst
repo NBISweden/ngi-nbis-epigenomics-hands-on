@@ -746,6 +746,7 @@ We present here alternative workflows built using Nextflow that are pre-packaged
 
 For a tutorial about the basics of Nextflows and launching of nf-core pipelines in HPC, please see `here <https://ngi-nbis-epigenomics-hands-on.readthedocs.io/en/latest/content/tutorials/nextflow/nextflow.html>´_.
 
+:raw-html:`<br />`
 
 **EPI2ME wf-basecalling**
 
@@ -771,6 +772,7 @@ Change directory to your personal folder.
 
 
 A demo dataset is provided by EPI2ME for testing the workflow.  The POD5 dataset is a subset of the January 2025 GIAB HG002 Dataset used for testing the EPI2ME wf-basecalling pipeline.
+
 | Generate softlinks of the demo data to your personal folder.
 
 .. code-block:: bash
@@ -866,7 +868,7 @@ To submit the job, type the command below in the terminal.
 
 .. code-block:: bash
 
-   sbatch  run.epi2me.basecall.sh
+   sbatch run.epi2me.basecall.sh
 
 
 | To check on the status of your job in the queue:  
@@ -882,7 +884,11 @@ To submit the job, type the command below in the terminal.
 The output file is an aligned modBAM, and can be found in your output directory ``$OUTPUT`` as defined in the job script.
 
 
+:raw-html:`<br />`
 
+nf-core methylong
+-----------------------
+:raw-html:`<br />`
 
 :raw-html:`<br />`
 :raw-html:`<br />`
