@@ -191,7 +191,7 @@ By default, ``dorado basecaller`` will attempt to detect any adapter or primer s
 We will write a bash script that will execute ``dorado`` command and submit this script to the SLURM queue system.  The job submission script will include a number of SLURM directives prefixed with ``#SBATCH``.  Have a look at each of the ``#SBATCH``  directives and their meanings.
 
 .. admonition:: Job script
-   :class: dropdown,example
+   :class: dropdown, note
 
    .. code-block:: bash
 
@@ -906,9 +906,300 @@ The example run of EPI2ME wf-basecalling in the job script will generate CRAM fi
 
 :raw-html:`<br />`
 
-nf-core methylong
------------------------
-:raw-html:`<br />`
+**nf-core methylong**
+
+The nf-core/methylong is an end-to-end comprehensive pipeline that is tailored for long-read methylation calling.  The user has an option to either run the ONT or the PacBio HiFi workflows.  Here we only present the ONT workflow.  Full documentation is here https://nf-co.re/methylong/dev/. 
+
+Note that we will be using the version dev, which is still under active development and has not been deployed for production release.  Hence,  it is not uncommon to encounter bugs when running this pipeline version.  We are already testing the dev version as it has more functionality than version 1.0.0.
+
+
+The ONT workflow can be used to perform:
+(Modified) basecalling using dorado basecaller
+trim (porechop) and repair tags (modkit repair) of input modBAM 
+align to reference using  minimap2
+optional: If input is an aligned modBAM then use argument –reset  to remove previous alignment information before running read alignment.
+create bedMethyl table using  modkit pileup
+create bedgraphs for visualisation (optional)
+SNV calling using clair3
+SNV phasing using whatshap phase
+DMR analysis using DSS (default) or modkit dmr
+includes DMR haplotype level and population scale
+
+
+You can use this premade sample sheet samplesheet.dev.csv in your \script folder
+ which uses some POD5 files from the dataset modbase-validation_2024.10.
+
+
+
+Change directory to your personal folder 
+cd /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/<your_name>
+
+
+Edit your local copy of the script run.nfcore.methylong.Pelle.sh.
+cd script
+nano run.nfcore.methylong.Pelle.sh
+
+
+.. admonition:: Job script
+   :class: dropdown, note
+
+   .. code-block:: bash
+
+      #!/bin/bash -l
+
+      #SBATCH -A uppmax2025-2-309             # Replace with your NAISS project name
+      #SBATCH -p gpu                          # Request a GPU partition or node
+      #SBATCH --gres=gpu:1                    # Request generic resources  of 1 gpu
+      #SBATCH --ntasks 16                     # Request this number of threads
+      #SBATCH -t 48:00:00                     # Set a limit of the total run time
+      #SBATCH -J methylong                    # Specifies name for the job
+      #SBATCH -e methylong_%j_error.txt       # output file for the bash script standard error
+      #SBATCH -o methylong_%j_out.txt         # output file for the bash script standard output
+
+
+      # Load the preinstalled latest Nextflow
+      module load Nextflow
+
+
+      # set your personal directory
+      mydir="/proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/louella"
+
+
+      # Set Apptainer/Singularity environment variables to define caching and tmp
+      # directories. These are used during the conversion of Docker images to
+      # Apptainer/Singularity ones.
+      # These lines can be omitted if the variables are already set in your `~/.bashrc` file.
+      #
+      # create directory
+      mkdir -p $mydir/apptainer/cache
+      mkdir -p $mydir/apptainer/tmp
+      #
+      export APPTAINER_CACHEDIR="$mydir/apptainer/cache"
+      export APPTAINER_TMPDIR="$mydir/apptainer/tmp"
+
+
+      # output folder
+      OUTPUT="$mydir/output/TEST_METHYLONG"
+      # create directory
+      mkdir -p $OUTPUT
+
+
+
+      # launch nextflow process
+      nextflow run nf-core/methylong -r dev \  # specify to use the version dev
+      -profile uppmax \                        # use a config that is pre-configured in nf-core with a setup suitable for the UPPMAX clusters
+      --input samplesheet.dev.csv \
+      --outdir $OUTPUT \
+      --project uppmax2025-2-309 \
+      --bedgraph \                            # generate output bedgraph for visualisation
+      --skip_snvs \                           # skip snvcall and phasing
+      --dmr_population_scale \                # perform DMR analysis for population scale
+      --population_dmrer modkit \             # use modkit for DMR analysis
+      --dmr_a 5mc --dmr_b ctrl \              # define the group of DMR analysis in population scale
+      --dorado_model hac \
+      --dorado_modification 5mCG_5hmCG \
+      -c local.config                         # use a user defined configuration setting to change default parameters of the pipeline
+
+
+
+
+
+
+
+
+
+Replace louella with <your_name> in variable mydir.
+Ctrl+O and Enter to save your changes.
+Ctrl+X to exit nano.
+
+Have a look at the provided sample sheet by using this command.
+less -S  samplesheet.dev.csv
+
+
+
+To submit the job, type the command below in the terminal.
+sbatch  run.nfcore.methylong.Pelle.sh
+
+
+To check on the status of your job in the queue:  
+note that username is your UPPMAX login name.
+squeue -u username
+
+
+The example run of nf-core methylong  in the job script  will take around 2.5 hours to finish. 
+It will generate a large number of files stored in the output directory $OUTPUT.
+
+
+.. admonition:: Output files generated
+   :class: dropdown, note
+
+   .. code-block:: bash
+
+
+      ├── multiqc
+      │   ├── multiqc_data
+      │   │   ├── multiqc_citations.txt
+      │   │   ├── multiqc_data.json
+      │   │   ├── multiqc_general_stats.txt
+      │   │   ├── multiqc.log
+      │   │   ├── multiqc_samtools_flagstat.txt
+      │   │   ├── multiqc_software_versions.txt
+      │   │   ├── multiqc_sources.txt
+      │   │   └── samtools-flagstat-dp.txt
+      │   ├── multiqc_plots
+      │   │   ├── pdf
+      │   │   │   ├── general_stats_table.pdf
+      │   │   │   └── samtools-flagstat-dp.pdf
+      │   │   ├── png
+      │   │   │   ├── general_stats_table.png
+      │   │   │   └── samtools-flagstat-dp.png
+      │   │   └── svg
+      │   │       ├── general_stats_table.svg
+      │   │       └── samtools-flagstat-dp.svg
+      │   └── multiqc_report.html
+      ├── ont
+      │   ├── 5mc&ctrl
+      │   │   └── dmr_population_scale
+      │   │       └── modkit
+      │   │           └── 5mc&ctrl_modkit_dmr_population_scale.bed
+      │   ├── 5mc-rep1
+      │   │   ├── alignment
+      │   │   │   ├── 5mc-rep1
+      │   │   │   │   ├── 5mc-rep1_repaired.bam
+      │   │   │   │   └── 5mc-rep1_repaired.bam.bai
+      │   │   │   └── flagstat
+      │   │   │       └── 5mc-rep1_ont.flagstat
+      │   │   ├── basecall
+      │   │   │   └── 5mc-rep1_calls.bam
+      │   │   ├── bedgraphs
+      │   │   │   ├── 5mc-rep1_A_negative.bedgraph.gz
+      │   │   │   ├── 5mc-rep1_A_positive.bedgraph.gz
+      │   │   │   ├── 5mc-rep1_CG_negative.bedgraph.gz
+      │   │   │   ├── 5mc-rep1_CG_positive.bedgraph.gz
+      │   │   │   ├── 5mc-rep1_CHG_negative.bedgraph.gz
+      │   │   │   ├── 5mc-rep1_CHG_positive.bedgraph.gz
+      │   │   │   ├── 5mc-rep1_CHH_negative.bedgraph.gz
+      │   │   │   └── 5mc-rep1_CHH_positive.bedgraph.gz
+      │   │   ├── dmr_population_scale
+      │   │   │   └── modkit
+      │   │   │       └── 5mc-rep1.bed
+      │   │   ├── fastqc
+      │   │   │   ├── 5mc-rep1_ont_fastqc.html
+      │   │   │   └── 5mc-rep1_ont_fastqc.zip
+      │   │   ├── pileup
+      │   │   │   ├── 5mc-rep1.bed.gz
+      │   │   │   └── 5mc-rep1_pileup.log
+      │   │   ├── repair
+      │   │   │   ├── 5mc-rep1_repaired.bam
+      │   │   │   └── 5mc-rep1_repair.log
+      │   │   └── trim
+      │   │       ├── 5mc-rep1.fastq.gz
+      │   │       └── 5mc-rep1.log
+      │   ├── 5mc-rep2
+      │   │   ├── alignment
+      │   │   │   ├── 5mc-rep2
+      │   │   │   │   ├── 5mc-rep2_repaired.bam
+      │   │   │   │   └── 5mc-rep2_repaired.bam.bai
+      │   │   │   └── flagstat
+      │   │   │       └── 5mc-rep2_ont.flagstat
+      │   │   ├── basecall
+      │   │   │   └── 5mc-rep2_calls.bam
+      │   │   ├── bedgraphs
+      │   │   │   ├── 5mc-rep2_A_negative.bedgraph.gz
+      │   │   │   ├── 5mc-rep2_A_positive.bedgraph.gz
+      │   │   │   ├── 5mc-rep2_CG_negative.bedgraph.gz
+      │   │   │   ├── 5mc-rep2_CG_positive.bedgraph.gz
+      │   │   │   ├── 5mc-rep2_CHG_negative.bedgraph.gz
+      │   │   │   ├── 5mc-rep2_CHG_positive.bedgraph.gz
+      │   │   │   ├── 5mc-rep2_CHH_negative.bedgraph.gz
+      │   │   │   └── 5mc-rep2_CHH_positive.bedgraph.gz
+      │   │   ├── dmr_population_scale
+      │   │   │   └── modkit
+      │   │   │       └── 5mc-rep2.bed
+      │   │   ├── fastqc
+      │   │   │   ├── 5mc-rep2_ont_fastqc.html
+      │   │   │   └── 5mc-rep2_ont_fastqc.zip
+      │   │   ├── pileup
+      │   │   │   ├── 5mc-rep2.bed.gz
+      │   │   │   └── 5mc-rep2_pileup.log
+      │   │   ├── repair
+      │   │   │   ├── 5mc-rep2_repaired.bam
+      │   │   │   └── 5mc-rep2_repair.log
+      │   │   └── trim
+      │   │       ├── 5mc-rep2.fastq.gz
+      │   │       └── 5mc-rep2.log
+      │   ├── Ctl-rep1
+      │   │   ├── alignment
+      │   │   │   ├── Ctl-rep1
+      │   │   │   │   ├── Ctl-rep1_repaired.bam
+      │   │   │   │   └── Ctl-rep1_repaired.bam.bai
+      │   │   │   └── flagstat
+      │   │   │       └── Ctl-rep1_ont.flagstat
+      │   │   ├── basecall
+      │   │   │   └── Ctl-rep1_calls.bam
+      │   │   ├── bedgraphs
+      │   │   │   ├── Ctl-rep1_A_negative.bedgraph.gz
+      │   │   │   ├── Ctl-rep1_A_positive.bedgraph.gz
+      │   │   │   ├── Ctl-rep1_CG_negative.bedgraph.gz
+      │   │   │   ├── Ctl-rep1_CG_positive.bedgraph.gz
+      │   │   │   ├── Ctl-rep1_CHG_negative.bedgraph.gz
+      │   │   │   ├── Ctl-rep1_CHG_positive.bedgraph.gz
+      │   │   │   ├── Ctl-rep1_CHH_negative.bedgraph.gz
+      │   │   │   └── Ctl-rep1_CHH_positive.bedgraph.gz
+      │   │   ├── dmr_population_scale
+      │   │   │   └── modkit
+      │   │   │       └── Ctl-rep1.bed
+      │   │   ├── fastqc
+      │   │   │   ├── Ctl-rep1_ont_fastqc.html
+      │   │   │   └── Ctl-rep1_ont_fastqc.zip
+      │   │   ├── pileup
+      │   │   │   ├── Ctl-rep1.bed.gz
+      │   │   │   └── Ctl-rep1_pileup.log
+      │   │   ├── repair
+      │   │   │   ├── Ctl-rep1_repaired.bam
+      │   │   │   └── Ctl-rep1_repair.log
+      │   │   └── trim
+      │   │       ├── Ctl-rep1.fastq.gz
+      │   │       └── Ctl-rep1.log
+      │   └── Ctl-rep2
+      │       ├── alignment
+      │       │   ├── Ctl-rep2
+      │       │   │   ├── Ctl-rep2_repaired.bam
+      │       │   │   └── Ctl-rep2_repaired.bam.bai
+      │       │   └── flagstat
+      │       │       └── Ctl-rep2_ont.flagstat
+      │       ├── basecall
+      │       │   └── Ctl-rep2_calls.bam
+      │       ├── bedgraphs
+      │       │   ├── Ctl-rep2_A_negative.bedgraph.gz
+      │       │   ├── Ctl-rep2_A_positive.bedgraph.gz
+      │       │   ├── Ctl-rep2_CG_negative.bedgraph.gz
+      │       │   ├── Ctl-rep2_CG_positive.bedgraph.gz
+      │       │   ├── Ctl-rep2_CHG_negative.bedgraph.gz
+      │       │   ├── Ctl-rep2_CHG_positive.bedgraph.gz
+      │       │   ├── Ctl-rep2_CHH_negative.bedgraph.gz
+      │       │   └── Ctl-rep2_CHH_positive.bedgraph.gz
+      │       ├── dmr_population_scale
+      │       │   └── modkit
+      │       │       └── Ctl-rep2.bed
+      │       ├── fastqc
+      │       │   ├── Ctl-rep2_ont_fastqc.html
+      │       │   └── Ctl-rep2_ont_fastqc.zip
+      │       ├── pileup
+      │       │   ├── Ctl-rep2.bed.gz
+      │       │   └── Ctl-rep2_pileup.log
+      │       ├── repair
+      │       │   ├── Ctl-rep2_repaired.bam
+      │       │   └── Ctl-rep2_repair.log
+      │       └── trim
+      │           ├── Ctl-rep2.fastq.gz
+      │           └── Ctl-rep2.log
+
+
+
+
+
+
 
 :raw-html:`<br />`
 :raw-html:`<br />`
