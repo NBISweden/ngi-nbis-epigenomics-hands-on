@@ -744,7 +744,7 @@ Alternative workflows
 
 We present here alternative workflows built using Nextflow that are pre-packaged and reproducible pipelines to analyze Oxford Nanopore sequencing data.  These workflows automate complex tasks like alignment, count pileup, and finding DMRs.
 
-For a tutorial about the basics of Nextflows and launching of nf-core pipelines in HPC, please see `here <https://ngi-nbis-epigenomics-hands-on.readthedocs.io/en/latest/content/tutorials/nextflow/nextflow.html>´_.
+For a tutorial about the basics of Nextflows and launching of nf-core pipelines in HPC, please see `here <https://ngi-nbis-epigenomics-hands-on.readthedocs.io/en/latest/content/tutorials/nextflow/nextflow.html>`_.
 
 :raw-html:`<br />`
 
