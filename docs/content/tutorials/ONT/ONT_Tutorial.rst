@@ -917,14 +917,18 @@ The ONT workflow can be used to perform:
 
 * (Modified) basecalling using ``dorado basecaller``
 * trim (``porechop``) and repair tags (``modkit repair``) of input modBAM 
+
 * align to reference using ``minimap2``
-  optional: If input is an aligned modBAM then use argument ``--reset``  to remove previous alignment information before running read alignment.
+   optional: If input is an aligned modBAM then use argument ``--reset``  to remove previous alignment information before running read alignment.
+
+
 * create bedMethyl table using ``modkit pileup``
 * create bedgraphs for visualisation (optional)
 * SNV calling using ``clair3``
 * SNV phasing using ``whatshap phase``
+
 * DMR analysis using ``DSS`` (default) or ``modkit dmr``
-  includes DMR haplotype level and population scale 
+   includes DMR haplotype level and population scale 
 
 
 You can use this premade sample sheet ``samplesheet.dev.csv`` in your ``\script`` folder which uses some POD5 files from the dataset ``modbase-validation_2024.10``.
