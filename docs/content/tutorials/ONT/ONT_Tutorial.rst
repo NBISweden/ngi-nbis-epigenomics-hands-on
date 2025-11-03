@@ -908,36 +908,43 @@ The example run of EPI2ME wf-basecalling in the job script will generate CRAM fi
 
 **nf-core methylong**
 
-The nf-core/methylong is an end-to-end comprehensive pipeline that is tailored for long-read methylation calling.  The user has an option to either run the ONT or the PacBio HiFi workflows.  Here we only present the ONT workflow.  Full documentation is here https://nf-co.re/methylong/dev/. 
+The nf-core/methylong is an end-to-end comprehensive pipeline that is tailored for long-read methylation calling.  The user has an option to either run the ONT or the PacBio HiFi workflows.  Here we only present the ONT workflow.  Full documentation is `here <https://nf-co.re/methylong/dev/>`_. 
 
-Note that we will be using the version dev, which is still under active development and has not been deployed for production release.  Hence,  it is not uncommon to encounter bugs when running this pipeline version.  We are already testing the dev version as it has more functionality than version 1.0.0.
+Note that we will be using the version ``dev``, which is still under active development and has not been deployed for production release.  Hence,  it is not uncommon to encounter bugs when running this pipeline version.  We are already testing the ``dev`` version as it has more functionality than the latest release ``1.0.0``.
 
 
 The ONT workflow can be used to perform:
-(Modified) basecalling using dorado basecaller
-trim (porechop) and repair tags (modkit repair) of input modBAM 
-align to reference using  minimap2
-optional: If input is an aligned modBAM then use argument –reset  to remove previous alignment information before running read alignment.
-create bedMethyl table using  modkit pileup
-create bedgraphs for visualisation (optional)
-SNV calling using clair3
-SNV phasing using whatshap phase
-DMR analysis using DSS (default) or modkit dmr
-includes DMR haplotype level and population scale
+
+* (Modified) basecalling using ``dorado basecaller``
+* trim (``porechop``) and repair tags (``modkit repair``) of input modBAM 
+* align to reference using ``minimap2``
+   optional: If input is an aligned modBAM then use argument ``--reset``  to remove previous alignment information before running read alignment.
+* create bedMethyl table using ``modkit pileup``
+* create bedgraphs for visualisation (optional)
+* SNV calling using ``clair3``
+* SNV phasing using ``whatshap phase``
+* DMR analysis using ``DSS`` (default) or ``modkit dmr``
+   includes DMR haplotype level and population scale
 
 
-You can use this premade sample sheet samplesheet.dev.csv in your \script folder
- which uses some POD5 files from the dataset modbase-validation_2024.10.
+You can use this premade sample sheet ``samplesheet.dev.csv`` in your ``\script`` folder
+ which uses some POD5 files from the dataset ``modbase-validation_2024.10``.
 
 
 
-Change directory to your personal folder 
-cd /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/<your_name>
+Change directory to your personal folder.
+
+.. code-block:: bash
+
+   cd /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/<your_name>
 
 
-Edit your local copy of the script run.nfcore.methylong.Pelle.sh.
-cd script
-nano run.nfcore.methylong.Pelle.sh
+Edit your local copy of the script ``run.nfcore.methylong.Pelle.sh``.
+
+.. code-block:: bash
+
+   cd script
+   nano run.nfcore.methylong.Pelle.sh
 
 
 .. admonition:: Job script
@@ -1008,26 +1015,35 @@ nano run.nfcore.methylong.Pelle.sh
 
 
 
-Replace louella with <your_name> in variable mydir.
-Ctrl+O and Enter to save your changes.
-Ctrl+X to exit nano.
+| Replace ``louella`` with ``<your_name>`` in variable ``mydir``.
+| ``Ctrl+O`` and ``Enter`` to save your changes.
+| ``Ctrl+X`` to exit nano.
 
 Have a look at the provided sample sheet by using this command.
-less -S  samplesheet.dev.csv
+
+.. code-block:: bash
+
+   less -S  samplesheet.dev.csv
 
 
 
 To submit the job, type the command below in the terminal.
-sbatch  run.nfcore.methylong.Pelle.sh
+
+.. code-block:: bash
+   
+   sbatch  run.nfcore.methylong.Pelle.sh
 
 
-To check on the status of your job in the queue:  
-note that username is your UPPMAX login name.
-squeue -u username
+| To check on the status of your job in the queue:  
+| note that ``username`` is your UPPMAX login name.
+
+.. code-block:: bash
+
+   squeue -u username
 
 
 The example run of nf-core methylong  in the job script  will take around 2.5 hours to finish. 
-It will generate a large number of files stored in the output directory $OUTPUT.
+It will generate a large number of files stored in the output directory ``$OUTPUT``.
 
 
 .. admonition:: Output files generated
