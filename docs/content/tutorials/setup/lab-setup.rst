@@ -69,6 +69,7 @@ There are many files which are part of the data set as well as there are additio
 
 Please use the course directory for the tutorials instead of your home directory.
 Please create your personal folder with name ``<your_name>``.
+
 .. code-block:: bash
 
    cd /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/   # Change to the course directory
