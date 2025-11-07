@@ -34,7 +34,7 @@ Friday (14 November 2025)
 
 **13:30 - 14:00** Lecture:  Processing of ONT data and methylation calling (Louella Vasquez)
 
-**14:00 - 15:00** :doc:`Exercises on ONT and workflows <>`
+**14:00 - 15:00** :doc:`Exercises on ONT <./tutorials/ONT/ONT_Tutorial>` and :doc:`workflows <./tutorials/nextflow/nextflow>`
 
 **15:00 - 15:15** Fika
 
