@@ -72,8 +72,11 @@ Please create your personal folder with name ``<your_name>``.
 
 .. code-block:: bash
 
-   cd /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/   # Change to the course directory
-   mkdir <your_name>	 										  # Create your personal folder		
+   # Change to the course directory
+   cd /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/   
+
+   # Create your personal folder
+   mkdir <your_name>	 										  		
 
 
 
