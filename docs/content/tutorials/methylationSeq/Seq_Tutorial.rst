@@ -36,6 +36,7 @@ Introduction
 
 Since its first use in 1992, bisulfite (BS) sequencing of DNA has become the gold standard for analysis of DNA methylation due to the potential whole-genome coverage and single-base resolution. 
 
+
 There are different protocols available to assess DNA methylation using NGS. The easiest way is to add the bisulfite reaction to the sequencing workflow and do Whole-Genome Bisulfite Sequencing (WGBS). However, this requires sufficient read depths to reliably determine methylation status. When working on an organism with a large genome size, this can lead to high costs for sequencing. The benefits of WGBS are that it typically reaches a coverage >90% of the CpGs in the human genome in unbiased representation. It allows identification of non-CG methylation as well as identification of partially methylated domains, low methylated regions at distal regulatory elements and DNA methylation valleys in embryonic stem cells. Despite its advantages, WGBS remains the most expensive technique and is usually not applied to a large number of samples. 
 
 As an alternative, one could focus the detection of DNA methylation to a specific subset of the genome, thereby reducing the data volume of the experiment and subsequently the cost. One popular approach to this is Reduced Representation Bisulfite Sequencing (RRBS). The fundamental idea of RRBS is to get a “reduced representation" of the genome, with a focus on CpG islands. This involves the addition of restriction enzymes to digest the DNA during the fragmentation step. Typically, the enzyme MspI is used which is methylation insensitive. It cuts at 5’-CCGG-3’ sites, and since the genome is largely depleted of CpGs except for promoters/CpG islands, the "reduced representation" is largely capturing only these promoter regions for further analysis.
@@ -47,7 +48,7 @@ Regardless of the approach, the rationale behind bisulfite sequencing is fairly 
    :alt: 
 *Fig. 1: Bisulfite sequencing overview.*
 
-Being able to do this quantification reliably depends on rigorous quality control before alignment, the choice of alignment method and post-alignment quality control. Other issues to consider are the reduced complexity and the increased degradation that occurs during bisulfite treatment.  A best-practices pipeline for the mapping and quantification of bisulfite converted reads has been developed by nf-core (see `methylseq <https://nf-co.re/methylseq>`_\ ) using either ``Bismark`` or ``bwa-meth`` as aligners for BS-seq data.  You can follow this tutorial :doc:`../nextflow` to run nf-core workflows.  For today, we will focus on the downstream analysis, i.e. the part of the analysis after running for example nf-core methylseq. 
+Being able to do this quantification reliably depends on rigorous quality control before alignment, the choice of alignment method and post-alignment quality control. Other issues to consider are the reduced complexity and the increased degradation that occurs during bisulfite treatment.  A best-practices pipeline for the mapping and quantification of bisulfite converted reads has been developed by nf-core (see `methylseq <https://nf-co.re/methylseq>`_\ ) using either ``Bismark`` or ``bwa-meth`` as aligners for BS-seq data.  You can follow this `tutorial <https://ngi-nbis-epigenomics-hands-on.readthedocs.io/en/latest/content/tutorials/nextflow/nextflow.html>`_  to run nf-core workflows.  For today, we will focus on the downstream analysis, i.e. the part of the analysis after running for example nf-core methylseq. 
 
 Datasets
 --------
@@ -66,31 +67,28 @@ In this study, the methylation status of two major functionally distinct epithel
 
 *Table 1: Example of a Bismark coverage files. One of the input types fit for methylKit.*
 
+
 Set Up R environment
 --------------------
 
-.. note::
-
-   If your session from the Array tutorial is still open, you can continue this exercise in that one. Otherwise set up the environment as you did this morning.
-
-This exercise has been set up to run on Uppmax, so connect to the server as described in :doc:`../setup/lab-setup`. Now, there are two options to set up the R environment. 
+This exercise has been set up to run on **Rackham**, so connect to the server as described in :doc:`../setup/lab-setup`. Now, there are two options to set up the R environment. 
 
 
-|Green-boxts| Option A |boxs| The easiest option makes use of the module system on Uppmax. This is the best way to avoid problems with dependencies between packages and avoids the issue of missing system libraries. Sometimes, this option suffers from slow response times when using Rstudio or has issues rendering figures. Because of the easy setup it might still be worth trying out this option first. |boxe|
+|Green-boxts| Option A |boxs| The easiest option makes use of the module system on Rackham. This is the best way to avoid problems with dependencies between packages and avoids the issue of missing system libraries. Sometimes, this option suffers from slow response times when using Rstudio or has issues rendering figures. Because of the easy setup it might still be worth trying out this option first. |boxe|
 
 
 |Orange-boxts| Option B |boxs| Alternatively, we provide a containerized environment consisting of R, Rstudio and the necessary packages for this session. This means the software can easily run within the container on almost any computer or server, greatly simplifying software installation and management. |boxe|
 
 
-These options are described in detail below. Please note, choose *one of them* to connect to Uppmax.
+These options are described in detail below. Please note, choose *one of them* to connect to Rackham.
 
 
 .. admonition::  Option A
    :class: optionA
 
-   The easiest option makes use of the module system on Uppmax. This is the best way to avoid problems with dependencies between packages and avoids the issue of missing system libraries. Sometimes, this option suffers from slow response times when using Rstudio or has issues rendering figures. Because of the easy setup it might still be worth trying out this option first.
+   The easiest option makes use of the module system on Rackham. This is the best way to avoid problems with dependencies between packages and avoids the issue of missing system libraries. Sometimes, this option suffers from slow response times when using Rstudio or has issues rendering figures. Because of the easy setup it might still be worth trying out this option first.
 
-   On Uppmax, most packages are already installed, and can be loaded into R after the *R/4.0.0* and  *R_packages/4.0.0* modules have been loaded. If you are running on Uppmax, start by loading the following modules:
+   On Rackham, most packages are already installed, and can be loaded into R after the *R/4.0.0* and  *R_packages/4.0.0* modules have been loaded. If you are running on Rackham, start by loading the following modules:
 
    .. code-block:: bash
 
@@ -120,7 +118,7 @@ These options are described in detail below. Please note, choose *one of them* t
 .. admonition::  Option B
    :class: optionB
 
-   Alternatively, we provide a containerized environment consisting of R, Rstudio and the necessary packages for this session. Containers are a relatively new method to package software together with all its dependencies and an operating system. This means the software can easily run within the container on almost any computer or server, greatly simplifying software installation and management. Containers will be discussed in a bit more detail on Thursday. A benefit of using it here is that Rstudio runs a whole lot faster using the container approach. However, to access it from Uppmax, a few more steps are necessary. First, make sure you are connected to your alloted node (described in :doc:`../setup/lab-setup`) and then perform following steps.
+   Alternatively, we provide a containerized environment consisting of R, Rstudio and the necessary packages for this session. Containers are a relatively new method to package software together with all its dependencies and an operating system. This means the software can easily run within the container on almost any computer or server, greatly simplifying software installation and management. A benefit of using it here is that Rstudio runs a whole lot faster using the container approach. However, to access it from Rackham, a few more steps are necessary. First, make sure you are connected to your alloted node (described in :doc:`../setup/lab-setup`) and then perform following steps.
 
    .. code-block:: bash
 
