@@ -169,7 +169,7 @@ Start by loading the required packages.
 Load Datasets
 -------------
 
-As mentioned above, the samples we will be using as input files are Bismark coverage files, which need to be collected in a list R object prior to be loaded in *methylKit* using the ``methRead`` function. The data files have been uploaded to Uppmax before. Important is that you supply sample location, sample IDs and the genome assembly. Moreover, you should supply which pipeline was used to produce the input files and a ``treatment`` parameter indicating which sample is "control" or "0" and which is "test" or "1". Additionally, you can define a minimum read coverage for CpG sites to be included in the object with ``mincov``. Depending on the type of input data, additional parameters are available.
+As mentioned above, the samples we will be using as input files are Bismark coverage files, which need to be collected in a list R object prior to be loaded in *methylKit* using the ``methRead`` function. The data files have been uploaded to Rackham before. Important is that you supply sample location, sample IDs and the genome assembly. Moreover, you should supply which pipeline was used to produce the input files and a ``treatment`` parameter indicating which sample is "control" or "0" and which is "test" or "1". Additionally, you can define a minimum read coverage for CpG sites to be included in the object with ``mincov``. Depending on the type of input data, additional parameters are available.
 
 .. note:: 
    Don't forget to check ``?methRead`` for more info about parameter options.
@@ -535,7 +535,7 @@ A tutorial of the Genome Browser is out of scope for this workshop; but a step-b
 
 .. note::
 
-  If you want to download from Uppmax, execute following code from a folder on your local computer: :code:`scp <username>@rackham.uppmax.uu.se:diff_cpg_25p.bed .`. Don't forget the trailing :code:`.`! This will download the diff_cpg_25p.bed file to that particular folder.
+  If you want to download from Rackham, execute following code from a folder on your local computer: :code:`scp <username>@rackham.uppmax.uu.se:diff_cpg_25p.bed .`. Don't forget the trailing :code:`.`! This will download the diff_cpg_25p.bed file to that particular folder.
 
 
 .. image:: Figures/UCSC_bed_2.png
