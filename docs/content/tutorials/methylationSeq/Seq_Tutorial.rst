@@ -817,7 +817,7 @@ The example run of nf-core ``methyseq`` will generate a large number of files st
 
 
 
-One very useful output of this run is a `MultiQC <https://docs.seqera.io/multiqc report>`_.  It is an interactive HTML report that summarizes QC data and useful statistics from multiple bioinformatics tools across all samples.
+One very useful output of this run is a `MultiQC <https://docs.seqera.io/multiqc>`_ report.  It is an interactive HTML report that summarizes QC data and useful statistics from multiple bioinformatics tools across all samples.
 
 
 Download the html report to your laptop. Open a terminal in your laptop and change to the desired directory, i.e., ``cd /path/to/myfolder``, then use the ``scp`` command to transfer files.
