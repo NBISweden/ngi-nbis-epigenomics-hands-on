@@ -14,7 +14,7 @@ Before we start the tutorial, we need to set up our work environment. In particu
 1. Be able to login to Uppmax and use the node allocation.
 2. Access files prepared for the tutorial and keep folder structures organised - we have prepared scripts to set this up for you for most of the labs.
 3. Learn how to read commands and use module system on Uppmax.
-4. If you work without access to Uppmax: check the dependencies.
+
 
 :raw-html:`<br />`
 
@@ -67,6 +67,14 @@ Directory structure
 
 There are many files which are part of the data set as well as there are additional files with annotations that are required to run various steps in this tutorial. Therefore saving files in a structured manner is essential to keep track of the analysis steps (and always a good practice). We have preset data access and environment for you.
 
+Please use the course directory for the tutorials instead of your home directory.
+Please create your personal folder with name ``<your_name>``.
+.. code-block:: bash
+
+   cd /proj/uppmax2025-2-309/nobackup/ngi-epigenomics/students/   # Change to the course directory
+   mkdir <your_name>	 										  # Create your personal folder		
+
+
 
 Commands and modules
 ======================
@@ -83,12 +91,4 @@ You will notice that you will load and unload modules practically before and aft
 
 	The commands in this tutorial contain paths as we set them up in the setup steps for each tutorial. If you change file locations, you will need to adjust paths to match these changes when running commands.
 
-
-
-Software Dependencies
-=====================
-
-If you have no access to Uppmax, where all software is preinstalled, you can configure your own system to follow the exercises.
-
-The dependencies are listed in :doc:`Dependencies <../../dependencies>`.
 
