@@ -558,14 +558,14 @@ nf-core methylseq
 
 
 ``nf-core/methylseq`` is a bioinformatics analysis pipeline used for BS-seq data. It pre-processes raw data from fastq inputs, aligns the reads and performs extensive quality-control.
-For the full documentation, please see `here <https://nf-co.re/methylseq/4.1.0>`_
+For the full documentation, please see `here <https://nf-co.re/methylseq/4.1.0>`_.
 For a tutorial about the basics of Nextflows and launching of nf-core pipelines in HPC, please see `here <https://ngi-nbis-epigenomics-hands-on.readthedocs.io/en/latest/content/tutorials/nextflow/nextflow.html>`_.
 
 
 
 Exit ``RStudio`` or an ``R`` session by typing ``q()``.
 You are now back in the command line of your interactive node.
-Copy each of the commands below in this command line to execute a process.
+Copy each of the commands below into this command line to execute a process.
 
 Change directory to the course directory. 
 
@@ -630,3 +630,188 @@ The example run of nf-core ``methyseq`` will generate a large number of files st
    :class: dropdown, note
 
    .. code-block:: bash
+
+
+         TEST_METHYLSEQ/
+      ├── bismark
+      │   ├── alignments
+      │   │   └── logs
+      │   │       └── Sample1_1_val_1_bismark_bt2_PE_report.txt
+      │   ├── deduplicated
+      │   │   ├── logs
+      │   │   │   └── Sample1_1_val_1_bismark_bt2_pe.deduplication_report.txt
+      │   │   ├── Sample1.deduplicated.sorted.bam
+      │   │   └── Sample1.deduplicated.sorted.bam.bai
+      │   ├── methylation_calls
+      │   │   ├── bedGraph
+      │   │   │   └── Sample1_1_val_1_bismark_bt2_pe.deduplicated.bedGraph.gz
+      │   │   ├── mbias
+      │   │   │   └── Sample1_1_val_1_bismark_bt2_pe.deduplicated.M-bias.txt
+      │   │   ├── methylation_calls
+      │   │   │   ├── CHG_OB_Sample1_1_val_1_bismark_bt2_pe.deduplicated.txt.gz
+      │   │   │   ├── CHG_OT_Sample1_1_val_1_bismark_bt2_pe.deduplicated.txt.gz
+      │   │   │   ├── CHH_OB_Sample1_1_val_1_bismark_bt2_pe.deduplicated.txt.gz
+      │   │   │   ├── CHH_OT_Sample1_1_val_1_bismark_bt2_pe.deduplicated.txt.gz
+      │   │   │   ├── CpG_OB_Sample1_1_val_1_bismark_bt2_pe.deduplicated.txt.gz
+      │   │   │   └── CpG_OT_Sample1_1_val_1_bismark_bt2_pe.deduplicated.txt.gz
+      │   │   ├── methylation_coverage
+      │   │   │   └── Sample1_1_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+      │   │   └── splitting_report
+      │   │       └── Sample1_1_val_1_bismark_bt2_pe.deduplicated_splitting_report.txt
+      │   ├── reports
+      │   │   └── Sample1_1_val_1_bismark_bt2_PE_report.html
+      │   └── summary
+      │       ├── bismark_summary_report.html
+      │       └── bismark_summary_report.txt
+      ├── fastqc
+      │   ├── Sample1_1_fastqc.html
+      │   ├── Sample1_2_fastqc.html
+      │   └── zips
+      │       ├── Sample1_1_fastqc.zip
+      │       └── Sample1_2_fastqc.zip
+      ├── multiqc
+      │   └── bismark
+      │       ├── multiqc_data
+      │       │   ├── BETA-multiqc.parquet
+      │       │   ├── bismark_alignment.txt
+      │       │   ├── bismark_deduplication.txt
+      │       │   ├── bismark_mbias_CHG_R1.txt
+      │       │   ├── bismark_mbias_CHG_R2.txt
+      │       │   ├── bismark_mbias_CHH_R1.txt
+      │       │   ├── bismark_mbias_CHH_R2.txt
+      │       │   ├── bismark_mbias_CpG_R1.txt
+      │       │   ├── bismark_mbias_CpG_R2.txt
+      │       │   ├── bismark-methylation-dp.txt
+      │       │   ├── bismark_strand_alignment.txt
+      │       │   ├── cutadapt_filtered_reads_plot.txt
+      │       │   ├── cutadapt_trimmed_sequences_plot_3_Counts.txt
+      │       │   ├── cutadapt_trimmed_sequences_plot_3_Obs_Exp.txt
+      │       │   ├── fastqc_adapter_content_plot.txt
+      │       │   ├── fastqc_per_base_n_content_plot.txt
+      │       │   ├── fastqc_per_base_sequence_quality_plot.txt
+      │       │   ├── fastqc_per_sequence_gc_content_plot_Counts.txt
+      │       │   ├── fastqc_per_sequence_gc_content_plot_Percentages.txt
+      │       │   ├── fastqc_per_sequence_quality_scores_plot.txt
+      │       │   ├── fastqc_sequence_counts_plot.txt
+      │       │   ├── fastqc_sequence_duplication_levels_plot.txt
+      │       │   ├── fastqc-status-check-heatmap.txt
+      │       │   ├── fastqc_top_overrepresented_sequences_table.txt
+      │       │   ├── llms-full.txt
+      │       │   ├── multiqc_bismark_alignment.txt
+      │       │   ├── multiqc_bismark_dedup.txt
+      │       │   ├── multiqc_bismark_methextract.txt
+      │       │   ├── multiqc_citations.txt
+      │       │   ├── multiqc_cutadapt.txt
+      │       │   ├── multiqc_data.json
+      │       │   ├── multiqc_fastqc.txt
+      │       │   ├── multiqc_general_stats.txt
+      │       │   ├── multiqc.log
+      │       │   ├── multiqc_software_versions.txt
+      │       │   └── multiqc_sources.txt
+      │       ├── multiqc_plots
+      │       │   ├── pdf
+      │       │   │   ├── bismark_alignment-cnt.pdf
+      │       │   │   ├── bismark_alignment-pct.pdf
+      │       │   │   ├── bismark_deduplication-cnt.pdf
+      │       │   │   ├── bismark_deduplication-pct.pdf
+      │       │   │   ├── bismark_mbias_CHG_R1.pdf
+      │       │   │   ├── bismark_mbias_CHG_R2.pdf
+      │       │   │   ├── bismark_mbias_CHH_R1.pdf
+      │       │   │   ├── bismark_mbias_CHH_R2.pdf
+      │       │   │   ├── bismark_mbias_CpG_R1.pdf
+      │       │   │   ├── bismark_mbias_CpG_R2.pdf
+      │       │   │   ├── bismark-methylation-dp.pdf
+      │       │   │   ├── bismark_strand_alignment-cnt.pdf
+      │       │   │   ├── bismark_strand_alignment-pct.pdf
+      │       │   │   ├── cutadapt_filtered_reads_plot-cnt.pdf
+      │       │   │   ├── cutadapt_filtered_reads_plot-pct.pdf
+      │       │   │   ├── cutadapt_trimmed_sequences_plot_3_Counts.pdf
+      │       │   │   ├── cutadapt_trimmed_sequences_plot_3_Obs_Exp.pdf
+      │       │   │   ├── fastqc_adapter_content_plot.pdf
+      │       │   │   ├── fastqc_per_base_n_content_plot.pdf
+      │       │   │   ├── fastqc_per_base_sequence_quality_plot.pdf
+      │       │   │   ├── fastqc_per_sequence_gc_content_plot_Counts.pdf
+      │       │   │   ├── fastqc_per_sequence_gc_content_plot_Percentages.pdf
+      │       │   │   ├── fastqc_per_sequence_quality_scores_plot.pdf
+      │       │   │   ├── fastqc_sequence_counts_plot-cnt.pdf
+      │       │   │   ├── fastqc_sequence_counts_plot-pct.pdf
+      │       │   │   ├── fastqc_sequence_duplication_levels_plot.pdf
+      │       │   │   ├── fastqc-status-check-heatmap.pdf
+      │       │   │   └── fastqc_top_overrepresented_sequences_table.pdf
+      │       │   ├── png
+      │       │   │   ├── bismark_alignment-cnt.png
+      │       │   │   ├── bismark_alignment-pct.png
+      │       │   │   ├── bismark_deduplication-cnt.png
+      │       │   │   ├── bismark_deduplication-pct.png
+      │       │   │   ├── bismark_mbias_CHG_R1.png
+      │       │   │   ├── bismark_mbias_CHG_R2.png
+      │       │   │   ├── bismark_mbias_CHH_R1.png
+      │       │   │   ├── bismark_mbias_CHH_R2.png
+      │       │   │   ├── bismark_mbias_CpG_R1.png
+      │       │   │   ├── bismark_mbias_CpG_R2.png
+      │       │   │   ├── bismark-methylation-dp.png
+      │       │   │   ├── bismark_strand_alignment-cnt.png
+      │       │   │   ├── bismark_strand_alignment-pct.png
+      │       │   │   ├── cutadapt_filtered_reads_plot-cnt.png
+      │       │   │   ├── cutadapt_filtered_reads_plot-pct.png
+      │       │   │   ├── cutadapt_trimmed_sequences_plot_3_Counts.png
+      │       │   │   ├── cutadapt_trimmed_sequences_plot_3_Obs_Exp.png
+      │       │   │   ├── fastqc_adapter_content_plot.png
+      │       │   │   ├── fastqc_per_base_n_content_plot.png
+      │       │   │   ├── fastqc_per_base_sequence_quality_plot.png
+      │       │   │   ├── fastqc_per_sequence_gc_content_plot_Counts.png
+      │       │   │   ├── fastqc_per_sequence_gc_content_plot_Percentages.png
+      │       │   │   ├── fastqc_per_sequence_quality_scores_plot.png
+      │       │   │   ├── fastqc_sequence_counts_plot-cnt.png
+      │       │   │   ├── fastqc_sequence_counts_plot-pct.png
+      │       │   │   ├── fastqc_sequence_duplication_levels_plot.png
+      │       │   │   ├── fastqc-status-check-heatmap.png
+      │       │   │   └── fastqc_top_overrepresented_sequences_table.png
+      │       │   └── svg
+      │       │       ├── bismark_alignment-cnt.svg
+      │       │       ├── bismark_alignment-pct.svg
+      │       │       ├── bismark_deduplication-cnt.svg
+      │       │       ├── bismark_deduplication-pct.svg
+      │       │       ├── bismark_mbias_CHG_R1.svg
+      │       │       ├── bismark_mbias_CHG_R2.svg
+      │       │       ├── bismark_mbias_CHH_R1.svg
+      │       │       ├── bismark_mbias_CHH_R2.svg
+      │       │       ├── bismark_mbias_CpG_R1.svg
+      │       │       ├── bismark_mbias_CpG_R2.svg
+      │       │       ├── bismark-methylation-dp.svg
+      │       │       ├── bismark_strand_alignment-cnt.svg
+      │       │       ├── bismark_strand_alignment-pct.svg
+      │       │       ├── cutadapt_filtered_reads_plot-cnt.svg
+      │       │       ├── cutadapt_filtered_reads_plot-pct.svg
+      │       │       ├── cutadapt_trimmed_sequences_plot_3_Counts.svg
+      │       │       ├── cutadapt_trimmed_sequences_plot_3_Obs_Exp.svg
+      │       │       ├── fastqc_adapter_content_plot.svg
+      │       │       ├── fastqc_per_base_n_content_plot.svg
+      │       │       ├── fastqc_per_base_sequence_quality_plot.svg
+      │       │       ├── fastqc_per_sequence_gc_content_plot_Counts.svg
+      │       │       ├── fastqc_per_sequence_gc_content_plot_Percentages.svg
+      │       │       ├── fastqc_per_sequence_quality_scores_plot.svg
+      │       │       ├── fastqc_sequence_counts_plot-cnt.svg
+      │       │       ├── fastqc_sequence_counts_plot-pct.svg
+      │       │       ├── fastqc_sequence_duplication_levels_plot.svg
+      │       │       ├── fastqc-status-check-heatmap.svg
+      │       │       └── fastqc_top_overrepresented_sequences_table.svg
+      │       └── multiqc_report.html
+      ├── pipeline_info
+      │   ├── execution_report_2025-09-22_01-17-32.html
+      │   ├── execution_timeline_2025-09-22_01-17-32.html
+      │   ├── execution_trace_2025-09-22_01-17-32.txt
+      │   ├── nf_core_methylseq_software_mqc_versions.yml
+      │   ├── params_2025-09-22_01-17-41.json
+      │   └── pipeline_dag_2025-09-22_01-17-32.html
+      └── trimgalore
+         ├── fastqc
+         │   ├── Sample1_1_val_1_fastqc.html
+         │   ├── Sample1_2_val_2_fastqc.html
+         │   └── zips
+         │       ├── Sample1_1_val_1_fastqc.zip
+         │       └── Sample1_2_val_2_fastqc.zip
+         └── logs
+            ├── Sample1_1.fastq.gz_trimming_report.txt
+            └── Sample1_2.fastq.gz_trimming_report.txt
+
