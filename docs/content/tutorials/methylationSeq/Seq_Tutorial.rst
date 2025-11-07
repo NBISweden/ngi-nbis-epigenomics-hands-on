@@ -546,23 +546,8 @@ A tutorial of the Genome Browser is out of scope for this workshop; but a step-b
 
 Exactly how to produce these plots is out of the scope of these exercises, but I encourage you to try it later with - for example - the bedgraph of all differentially methylated CpGs.
 
-Gene Set Enrichment
--------------------
-
-Methylation is a DNA mark that can occur anywhere on the genome and is not as directly related to genes as expression data. Therefore, a methylation specific issue in performing gene set testing is how to assign differentially methylated features to genes. In addition, measured CpG sites are not distributed evenly across the genome, and it has been shown that genes that have more CpG sites measured across them are more likely to be detected as differentially methylated compared to genes that have fewer measured CpG sites. Moreover, approximately 10% of gene-annotated CpGs are assigned to more than one gene, violating assumptions of independently measured genes. Thus far, there are very few gene set testing methods designed specifically for DNA methylation data and their usefulness can be very limited. The *MissMethyl*  package was presented in the array tutorial as a potential tool, but is specific for array data.
-
-For bisulfite sequencing data, most often *ad hoc* approaches are used to select a subset of genes associated with differently methylated CpGs or regions. Next, this list of genes can be analyzed with traditional gene set enrichment tools such as *GOseq* (see more info `here <https://academic.oup.com/bioinformatics/article/29/15/1851/265573>`_, where the authors used this package to correct the "CpG sites per gene" bias). 
 
 Alternative workflows
 ---------------------
 
-DSS 
-   beta-binomial models with empirical Bayes for moderating dispersion.
-BSseq 
-   Regional differential methylation analysis using smoothing and linear-regression-based tests.
-BiSeq 
-   Regional differential methylation analysis using beta-binomial models.
-MethylSeekR 
-   Methylome segmentation using HMM and cutoffs.
-QuasR
-   Methylation aware alignment and methylation calling, as well as fastQC-like fastq raw data quality check features.
+Besides *methylKit*, there are several other R packages available for the analysis of bisulfite sequencing data. Some popular alternatives include *bsseq* ` <https://bioconductor.org/packages/release/bioc/html/bsseq.html>`_ and *DSS* ` <https://bioconductor.org/packages/release/bioc/html/DSS.html>`_. Both packages have their own strengths and weaknesses, so it is worth checking them out to see which one fits your needs best.
