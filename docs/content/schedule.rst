@@ -38,7 +38,7 @@ Friday (14 November 2025)
 
 **15:00 - 15:15** Fika
 
-**15:15 - 15:45** :doc:`Exercises on ONT and workflows <>`
+**15:15 - 15:45** :doc:`Exercises on ONT <./tutorials/ONT/ONT_Tutorial>` and :doc:`workflows <./tutorials/nextflow/nextflow>`
 
 **15:45 - 16:00** Course wrap up
 
