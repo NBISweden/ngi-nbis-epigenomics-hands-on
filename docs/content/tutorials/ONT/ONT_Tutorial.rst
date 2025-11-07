@@ -1,4 +1,4 @@
-. |Green-boxts| raw:: html
+.. |Green-boxts| raw:: html
 
     <div style="background-color: lightgreen; width: 100%; padding: 5px;">
     <h1>
