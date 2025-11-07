@@ -550,4 +550,4 @@ Exactly how to produce these plots is out of the scope of these exercises, but I
 Alternative workflows
 ---------------------
 
-Besides *methylKit*, there are several other R packages available for the analysis of bisulfite sequencing data. Some popular alternatives include *bsseq* ` <https://bioconductor.org/packages/release/bioc/html/bsseq.html>`_ and *DSS* ` <https://bioconductor.org/packages/release/bioc/html/DSS.html>`_. Both packages have their own strengths and weaknesses, so it is worth checking them out to see which one fits your needs best.
+Besides methylKit, there are several other R packages available for the analysis of bisulfite sequencing data. Some popular alternatives include `bsseq  <https://bioconductor.org/packages/release/bioc/html/bsseq.html>`_ and `DSS <https://bioconductor.org/packages/release/bioc/html/DSS.html>`_. Both packages have their own strengths and weaknesses, so it is worth checking them out to see which one fits your needs best.
