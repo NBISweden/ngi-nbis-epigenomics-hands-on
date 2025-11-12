@@ -14,9 +14,11 @@ Nextflow and nf-core
     :local:
 
 
+**This tutorial is run on rackham**
+
 .. attention::
 
-    For this tutorial **DO NOT** run the ``interactive`` command! These nextflow exercises are run from the login node (so just ``ssh -Y`` to rackham). If you later today want to work on some earlier exercises you can request cores with ``interactive`` after this tutorial.
+    For this tutorial **DO NOT** run the ``interactive`` command! These nextflow exercises are run from the login node (so just ``ssh -Y`` to **rackham**). If you later today want to work on some earlier exercises you can request cores with ``interactive`` after this tutorial.
 
 tmux
 -----
@@ -400,105 +402,6 @@ Standard output of this run::
     Config Contact      : Phil Ewels (@ewels)
     Config URL          : https://www.uppmax.uu.se/
 
-
-
-Methyl-seq
------------
-
-nf-core/methylseq is an analysis pipeline used for methylation (Bisulfite) sequencing data. It pre-processes raw data from FastQ inputs, aligns the reads and extract methylation calls and performs extensive quality-control on the results. The default workflow uses Bismark with Bowtie2 as alignment tool: unless specified otherwise, nf-core/methylseq will run this pipeline.
-
-Example data
-##############
-
-We have prepared some example data that has been subsampled to make them small and quick to run, and are supplied as gzipped (compressed) FastQ files here: ``/sw/courses/epigenomics/DNAmethylation/pipeline_bsseq_data/Sample1_PE_R[1,2].fastq.gz``. This is mouse data so remember to use the correct genome to map to.
-
-Running the pipeline
-#####################
-
-Begin with making a fresh analysis directory in your home directory
-
-.. code-block:: bash
-
-    cd /proj/epi2025/nobackup/private/$USER
-    mkdir methylseq_analysis
-    cd methylseq_analysis
-
-In this folder you can launch the analysis! For this, try to figure out the command you should run. Try to execute the methylseq pipeline with version 1.6.1 using the FastQ files mentioned above.
-
-Remember the core Nextflow flags that you will need (one hyphen!)
-
-* ``-profile uppmax``
-
-Figure out the pipeline specific parameter flags that you will need (two hyphens!). Have a look at the `list of parameters <https://nf-co.re/methylseq/1.6.1/parameters>`_ to get an idea which options are possible and make sure to use the essential parameters.
-
-* ``--input '/sw/courses/epigenomics/DNAmethylation/pipeline_bsseq_data/Sample1_PE_R{1,2}.fastq.gz'``
-* ``--aligner bismark``
-* ``--project uppmax2025-2-309``
-* ``--genome mm10``
-
-If all goes well, your pipeline will run and kick off lots of jobs and merrily process the data! Once it’s finished, take a look in the ``results`` folder and see what it generated. A description of the outputs can be seen `here <https://nf-co.re/methylseq/1.6.1/docs/output>`_.  Again, this might take a while due to the job queue (1 hour +), so feel free to detach from the tmux session and return later.
-
-.. admonition:: minimal methylseq command
-   :class: dropdown, note
-
-   ``nextflow run $NF_CORE_PIPELINES/methylseq/1.6.1/workflow -profile uppmax --input '/sw/courses/epigenomics/DNAmethylation/pipeline_bsseq_data/Sample1_PE_R{1,2}.fastq.gz' --aligner bismark --project naiss2024-22-842 --genome mm10``
-
-
-Standard output of this run::
-
-
-    N E X T F L O W  ~  version 22.10.2
-    Launching `/sw/bioinfo/nf-core-pipelines/latest/rackham/methylseq/1.6.1/workflow/main.nf` [elated_shannon] DSL1 - revision: 18179884b6
-
-
-    ------------------------------------------------------
-                                            ,--./,-.
-            ___     __   __   __   ___     /,-._.--~'
-      |\ | |__  __ /  ` /  \ |__) |__         }  {
-      | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                            `._,._,'
-      nf-core/methylseq v1.6.1
-    ------------------------------------------------------
-
-    Core Nextflow options
-      runName                   : elated_shannon
-      containerEngine           : singularity
-      container                 : nfcore/methylseq:1.6.1
-      launchDir                 : /crex/proj/epi2023/nobackup/private/agata/methylseq
-      workDir                   : /crex/proj/epi2023/nobackup/private/agata/methylseq/work
-      projectDir                : /sw/bioinfo/nf-core-pipelines/latest/rackham/methylseq/1.6.1/workflow
-      userName                  : agata
-      profile                   : uppmax
-      configFiles               : /sw/bioinfo/nf-core-pipelines/latest/rackham/methylseq/1.6.1/workflow/nextflow.config
-
-    Input/output options
-      input                     : /sw/courses/epigenomics/DNAmethylation/pipeline_bsseq_data/Sample1_PE_R{1,2}.fastq.gz
-
-    Reference genome options
-      genome                    : mm10
-      fasta                     : /sw/data/igenomes//Mus_musculus/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa
-      bismark_index             : /sw/data/igenomes//Mus_musculus/UCSC/mm10/Sequence/BismarkIndex/
-      save_reference            : true
-      igenomes_base             : /sw/data/igenomes/
-
-    Generic options
-      max_multiqc_email_size    : 25 MB
-
-    Max job request options
-      max_memory                : 500 GB
-      max_time                  : 10d
-
-    Institutional config options
-      custom_config_base        : /sw/bioinfo/nf-core-pipelines/latest/rackham/methylseq/1.6.1/workflow/../configs/
-      config_profile_description: UPPMAX (Bianca) cluster profile provided by nf-core/configs.
-      config_profile_contact    : Phil Ewels (@ewels)
-      config_profile_url        : https://www.uppmax.uu.se/
-
-    ------------------------------------------------------
-     Only displaying parameters that differ from defaults.
-    ------------------------------------------------------
-    WARN: Access to undefined parameter `bwa_meth_index` -- Initialise it to a default value eg. `params.bwa_meth_index = some_value`
-    WARN: Access to undefined parameter `fasta_index` -- Initialise it to a default value eg. `params.fasta_index = some_value`
 
 
 
