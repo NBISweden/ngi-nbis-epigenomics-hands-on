@@ -191,12 +191,57 @@ Remember the key points:
     cd atacseq-test
     nextflow run $NF_CORE_PIPELINES/atacseq/1.2.1/workflow -profile test,uppmax --project uppmax2025-2-309
 
-There’s a pretty good chance that something will go wrong at this point. But that’s ok, that’s why we run a small test dataset. This is where you check the configuration, environment, and ask for help on Slack.
+There’s a pretty good chance that something will go wrong at this point. But that’s ok, that’s why we run a small test dataset. This is where you check the configuration, environment, and ask for help.
 
 If all goes well, you should start seeing some log output from Nextflow appearing on your console (in standard output). Nextflow informs you which step of the pipeline it is doing and the percentage completed.
 
+At the beginning inputs, parameters and configs are listed::
 
-After the completion you'll see message similar to:
+                                          ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/atacseq v1.2.1
+----------------------------------------------------
+
+    Run Name             : sharp_laplace
+    Data Type            : Paired-End
+    Design File          : https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/design.csv
+    Genome               : Not supplied
+    Fasta File           : https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genome.fa
+    GTF File             : https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genes.gtf
+    Mitochondrial Contig : MT
+    MACS2 Genome Size    : 1.2E+7
+    Min Consensus Reps   : 1
+    MACS2 Narrow Peaks   : No
+    MACS2 Broad Cutoff   : 0.1
+    Trim R1              : 0 bp
+    Trim R2              : 0 bp
+    Trim 3' R1           : 0 bp
+    Trim 3' R2           : 0 bp
+    NextSeq Trim         : 0 bp
+    Fingerprint Bins     : 100
+    Save Genome Index    : Yes
+    Max Resources        : 6 GB memory, 2 cpus, 12h time per job
+    Container            : singularity - nfcore/atacseq:1.2.1
+    Output Dir           : ./results
+    Launch Dir           : /crex/proj/epi2025/nobackup/agata/ngi/atacseq-test
+    Working Dir          : /crex/proj/epi2025/nobackup/agata/ngi/atacseq-test/work
+    Script Dir           : /sw/bioinfo/nf-core-pipelines/latest/rackham/atacseq/1.2.1/workflow
+    User                 : agata
+    Config Profile       : test,uppmax
+    Config Description   : Minimal test dataset to check pipeline function
+    Config Contact       : Phil Ewels (@ewels)
+    Config URL           : https://www.uppmax.uu.se/
+    ----------------------------------------------------
+    executor >  slurm (1)
+    [ee/2cd1bb] process > CHECK_DESIGN (design.csv) [  0%] 0 of 1
+
+
+
+
+After the completion you'll see a message similar to:
 
 .. code-block:: bash
     
@@ -207,7 +252,7 @@ After the completion you'll see message similar to:
     Succeeded   : 88
 
 
-Even though the datasets in a test run are small, this pipeline can take a while because it submits jobs to the UPPMAX server via the resource manager SLURM. Depending on how busy the server is at the moment (and it might be quite busy if you all run this at the same time!), it may take a while before your jobs are executed. It might therefore be necessary to cancel the pipeline once Nextflow seems to progress though the different steps slowly but steadily. If you want to cancel the pipeline execution to progress with the tutorial, press ``CTRL-C`` which cancels the currently running process. Or alternatively, put it in the background using tmux, do some other things and reattach later to check in on the progress.
+Even though the datasets in a test run are small, this pipeline can take a while because it submits jobs to the UPPMAX server via the resource manager **SLURM**. Depending on how busy the server is at the moment (and it might be quite busy if you all run this at the same time!), it may take a while before your jobs are executed. It might therefore be necessary to cancel the pipeline once Nextflow seems to progress though the different steps slowly but steadily. If you want to cancel the pipeline execution to progress with the tutorial, press ``CTRL-C`` which cancels the currently running process. Or alternatively, put it in the background using tmux, do some other things and reattach later to check in on the progress.
 
 
 
@@ -231,6 +276,8 @@ The hidden ``.nextflow`` files and folders contain information for the cache and
 
 Each task of the pipeline runs in its own isolated directory, these can be found under ``work``. The name of each ``work`` directory corresponds to the task hash which is listed in the Nextflow log.
 
+Completed tasks are listed in file ``results/pipeline_info/execution_trace.txt`` (with their task hashes), along with resource usage and run time.
+
 As the pipeline runs, it saves the final files it generates to ``results`` (customise this location with ``--outdir``). Once you are happy that the pipeline has finished properly, you can delete the temporary files in ``work``:
 
 .. code-block:: bash
@@ -247,6 +294,11 @@ Nextflow is capable of using cached copies of pipeline steps if you re-run a pip
 Once the test workflow has finished or you have canceled it the middle of its execution, try running the same command again with the ``-resume`` flag. Hopefully almost all steps will use the previous cached copies of results and the pipeline will finish extremely quickly.
 
 This option is very useful if a pipeline fails unexpectedly, as it allows you to start again and pick up where you left off.
+
+
+.. code-block:: bash
+
+    nextflow run $NF_CORE_PIPELINES/atacseq/1.2.1/workflow -profile test,uppmax --project uppmax2025-2-309 -resume
 
 
 
@@ -275,7 +327,7 @@ For technical reasons, there cannot be two *simultaneous* nextflow runs in the s
 Running a real workflow
 -----------------------------
 
-Now we get to the real deal! Once you’ve gotten this far, you start to leave behind the generalisations that apply to all nf-core pipelines. Now you have to rely on your wits and the nf-core documentation. We have prepared small datasets for a ChIP-seq analysis and a BS-seq analysis. You can choose to do the one that interests you most or if you have time you can try both!
+Now we get to the real deal! Once you’ve gotten this far, you start to leave behind the generalisations that apply to all nf-core pipelines. Now you have to rely on your wits and the nf-core documentation. We have prepared a small dataset for a ChIP-seq analysis to be processed using ``nf-core chipseq`` pipeline.
 
 
 ChIP-seq
@@ -298,7 +350,7 @@ Make a new directory for this ChIP seq analysis and link the data files to a dat
     ln -s /sw/courses/epigenomics/nextflow/fastq_sub12_gz/neural/*.fastq.gz .
     ls
 
-The last command should show you the 4 neural fastq.gz files in this folder.
+The last command should show you the 4 fastq.gz files in this folder. These are derived from a REST ChIP-seq in neural cells from `ENCODE <https://www.encodeproject.org/>`_.
 
 
 Preparing the sample sheet
@@ -328,7 +380,7 @@ The following things are easy mistakes when working with chipseq sample sheets -
 * File paths of the ``fastq.gz`` files are relative to where you launch Nextflow (i.e. the ``chip_seq_analysis`` folder), not relative to the sample sheet
 * Do not have any blank newlines at the end of the file
 * Use Linux line endings (``\n``), not Windows (``\r\n``) - in practice this means be mindful of this when creating this file using spreadsheet applications e.g. MS Word, MacOS Numbers etc.
-* If using single end data, keep the empty column for the second FastQ file
+* If using single end data, keep the empty column for the second FastQ file (such as in this example)
 
 
 Running the pipeline
@@ -408,7 +460,7 @@ Standard output of this run::
 Getting help
 -------------
 
-Please have a look at the nf-core website to see which pipelines are available (66 as of today!) and browse their thorough documentation.
+Please have a look at the nf-core website to see which pipelines are available (84 as of today!) and browse their thorough documentation.
 
 Remember that you’re not on your own! If you’re still struggling after checking the documentation, jump on to the nf-core Slack and ask for help.
 
