@@ -3,7 +3,7 @@
     :format: html
 
 
-.. please place the pdfs in `slides` ( NOT slides_2020). add the filename here, the path should be ../_static/FILENAME.pdf
+.. please place the pdfs in `slides`. add the filename here, the path should be ../_static/FILENAME.pdf
 
 
 
@@ -34,8 +34,8 @@ This page links to current presentations used in online sessions.
 
 :raw-html:`<br />`
 
-**Workflow**
+**Workflow Managers**
 
 
-`Slides <.>`_
+`Workflow Managers Slides <../_static/ngi-nbis-lecture-wfm.pdf>`_
 
