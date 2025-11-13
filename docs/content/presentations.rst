@@ -12,7 +12,7 @@
 Presentations
 =============
 
-This page links to current presentations used in online sessions.
+This page links to current presentations.
 
 
 **Methylation: Bisulfite-Seq**
