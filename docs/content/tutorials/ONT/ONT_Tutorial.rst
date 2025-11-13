@@ -63,7 +63,7 @@ We have booked 5 CPU and 1 GPU cores on Pelle per course participant.
 For this tutorial, you will not be needing an interactive session.
 Instead you will be submitting jobs to the SLURM queue system.
 
-Log in to Pelle.  Note that in Pelle, you will have to login using 2-factor authentication (2FA).
+Open a terminal and log in to Pelle.  Note that in Pelle, you will have to login using 2-factor authentication (2FA).
 
 .. code-block:: bash
 
@@ -177,7 +177,7 @@ Basecalling using `Dorado <https://github.com/nanoporetech/dorado>`_
 ----------------------------------------------------------------
 
 
-Load the latest version of `dorado` module in Pelle.
+Load the latest version of ``dorado`` module in Pelle.
 
  .. code-block:: bash
 
@@ -518,7 +518,7 @@ The minimal usage is
    | Add a pycoQC run in step 3 of the bash script ``run.dorado.gpu.Pelle.sh`` 
    | and submit the job again.
    | Use the command below which will include alignment information from an input BAM file.
-   | ``pycoQC -f /path/to/summary.tsv -a /path/to/input.bam -o /path/to/output.html``
+   | ``$pycoQC -f /path/to/summary.tsv -a /path/to/input.bam -o /path/to/output.html``
    | Please edit the file path and name in the script accordingly.
 
 
@@ -617,6 +617,23 @@ Summarise counts using `Modkit <https://nanoporetech.github.io/modkit/>`_
 
 After  modified base calling is done, one can aggregate read counts for each base modification across genomic position.  This can be done by executing the ``modkit pileup`` command.  
 Modkit will then create a table in an extended `bedMethyl  <https://www.encodeproject.org/data-standards/wgbs/>`_ format that  will tabulate the summary counts of modified and unmodified bases at a genomic position. 
+
+
+
+Load the latest version of ``modkit`` module in Pelle.
+
+ .. code-block:: bash
+
+   module load modkit
+
+To see all the available options and their default values in ``modkit``, run
+ 
+ .. code-block:: bash
+
+   modkit -h 
+   modkit <subcommand> -h
+   modkit pileup -h
+
 
 
 The basic syntax is 
