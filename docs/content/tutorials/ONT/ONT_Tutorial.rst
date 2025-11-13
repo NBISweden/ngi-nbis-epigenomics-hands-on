@@ -25,7 +25,9 @@ DNA Methylation: Oxford Nanopore Data Processing Workflow
 
 **Learning Outcomes**
 
-In this tutorial, you will learn how to XXX.
+In this tutorial, you will learn how to process raw files from ONT sequencing from basecalling, mapping to generating a QC report.  You will also learn how to visualise modified base calls in IGV and generate summary counts of modified and unmodified bases using Modkit.  If there is time, you will also learn how to use Nextflow to launch pre-packaged reproducible workflows for ONT data analysis.
+
+
 :raw-html:`<br />`
 
 
@@ -56,7 +58,19 @@ Oxford Nanopore Technologies (ONT) sequencing platform is capable of detecting D
 Connect to Pelle
 ----------------
 
-:raw-html:`<br />`
+
+We have booked 5 CPU and 1 GPU cores on Pelle per course participant. 
+For this tutorial, you will not be needing an interactive session.
+Instead you will be submitting jobs to the SLURM queue system.
+
+Log in to Pelle.  Note that in Pelle, you will have to login using 2-factor authentication (2FA).
+
+.. code-block:: bash
+
+   ssh -Y <username>@pelle.uppmax.uu.se
+
+
+
 :raw-html:`<br />`
 :raw-html:`<br />`
 
@@ -163,9 +177,11 @@ Basecalling using `Dorado <https://github.com/nanoporetech/dorado>`_
 ----------------------------------------------------------------
 
 
+Load the latest version of `dorado` module in Pelle.
+
  .. code-block:: bash
 
-   module load dorado.XXX
+   module load dorado
 
 To see all the available options and their default values in ``dorado``, run
  
