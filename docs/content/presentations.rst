@@ -15,8 +15,8 @@ Presentations
 This page links to current presentations.
 
 
-**Methylation: Bisulfite-Seq**
-**Methylation: Long Read Seq by ONT**
+| **Methylation: Bisulfite-Seq**
+| **Methylation: Long Read Seq by ONT**
 
 `Slides <../_static/HandsOnEpigenomics-Day5_2025.pdf>`_
 
