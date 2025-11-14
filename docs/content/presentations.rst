@@ -16,19 +16,9 @@ This page links to current presentations.
 
 
 **Methylation: Bisulfite-Seq**
-
-`DNA Methylation Slides <>`_
-
-
-
-
-:raw-html:`<br />`
-
-
 **Methylation: Long Read Seq by ONT**
 
-
-`ONT <>`_
+`Slides <../_static/HandsOnEpigenomics-Day5_2025.pdf>`_
 
 
 
