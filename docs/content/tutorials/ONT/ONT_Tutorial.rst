@@ -221,11 +221,11 @@ We will write a bash script that will execute ``dorado`` command and submit this
       #SBATCH -o DORADO_%j_out.txt            # output file for the bash script standard output
 
 
-      # location of a precompiled dorado binary
-      dorado="/proj/uppmax2025-2-309/nobackup/ngi-epigenomics/tools/dorado-1.1.0-linux-x64/bin/dorado"
+      # load dorado -  latest version
+      module load dorado
       #
-      # location of a precompiled modkit binary
-      modkit="/proj/uppmax2025-2-309/nobackup/ngi-epigenomics/tools/dist_modkit_v0.5.1_8fa79e3/modkit"
+      # load modkit -  latest version
+      module load modkit
       #
       # location of a precompiled pycoQC binary
       pycoQC="/home/louel/.conda/envs/pycoQC/bin/pycoQC"
@@ -258,12 +258,12 @@ We will write a bash script that will execute ``dorado`` command and submit this
       # 1.
       # run dorado basecaller command
       # output is unaligned BAM file
-      $dorado basecaller hac,5mC_5hmC $inpod5 > $outputdir/$outputbam.unaligned.bam
+      dorado basecaller hac,5mC_5hmC $inpod5 > $outputdir/$outputbam.unaligned.bam
 
 
       # run dorado basecaller command and align reads to the reference genome
       # output is aligned BAM file
-      $dorado basecaller hac,5mC_5hmC $inpod5 --reference $reffasta > $outputdir/$outputbam.bam
+      dorado basecaller hac,5mC_5hmC $inpod5 --reference $reffasta > $outputdir/$outputbam.bam
       #
       # sort bam by coordinates then index
       samtools sort $outputdir/$outputbam.bam > $outputdir/tmp.$outputbam.bam
@@ -274,7 +274,7 @@ We will write a bash script that will execute ``dorado`` command and submit this
       #
       # 2. 
       # outputs read level sequencing information from the BAM file
-      $dorado summary $outputdir/$outputbam.bam > $outputdir/$outputbam.summary.tsv
+      dorado summary $outputdir/$outputbam.bam > $outputdir/$outputbam.summary.tsv
 
 
 Dorado supports both CPUs and GPUs, but using GPUs is essential for practical runtime.  In the script, we have requested to use one GPU core.  The job should finish in a few minutes, in contrast to several hours in CPU mode.
